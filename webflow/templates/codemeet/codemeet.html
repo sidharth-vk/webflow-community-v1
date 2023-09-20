@@ -1,0 +1,153 @@
+{% extends "base/base.html" %}
+ {% load static %}
+    {% block body %}
+
+
+    <div class="section-top section-top--space">
+        <div class="container">
+            <div class="section-top__inner" style="justify-content: space-between;">
+                <div class="section-top__content section-top-content">
+                    <p class="section-top-content__suptext">
+                        WebFlow Community
+                    </p>
+                    <h1 class="section-top-content__title title">
+                        Code <br> Meet '23
+                    </h1>
+                    <ul class="section-top-content__list card-list">
+                        <li class="card-list__item">
+                            <p class="card-list__text">
+                                Mukka, Mangalore
+                            </p>
+                        </li>
+                        <li class="card-list__item">
+                            <a class="card-list__link" href="https://www.suiet.in">
+                                SUIET
+                                
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="section-top-content__buttons">
+                        <a class="section-top-content__buttons-link section-top-content__buttons-link--green"
+                            href="#">
+                            
+                            <span>
+                                Explore all Events
+                            </span>
+                        </a>
+                        <a class="section-top-content__buttons-link" href="#">
+                            Rule Book
+                        </a>
+                    </div>
+                </div>
+                <div class="section-top__img " data-background-image="{% static "image/codemeet/Code Meet banner.png" %}">
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <section class="main__group-profile group-profile">
+        <div class="container">
+            <div class="group-profile__tabs tabs">
+                <button class="tabs__btn tabs__btn--active" type="button" id="0">
+                    Home
+                </button>
+
+                <button class="tabs__btn" type="button" id="2">
+                    Events
+                    <span>
+                        {{event_total}}
+                    </span>
+                </button>
+                <button class="tabs__btn" type="button" id="3">
+                    Cordinators
+                    <span>
+                        {{team_total}}
+                    </span>
+                </button>
+                <button class="tabs__btn" type="button" id="4">
+                    Forum
+                </button>
+            </div>
+            <div class="group-profile__inner">
+                <div class="group-profile__wrapper group-profile__wrapper--active" id="0">
+                    
+                </div>
+
+                <div class="group-profile__wrapper" id="2">
+                    {% for all_events in event %}
+                    <div class="events__card card card--events">
+                        <div class="card__inner">
+                            <p class="card__text">
+                                {{all_events.start_date_time.day}} {{all_events.start_date_time|date:"F"}} - {{all_events.end_date_time.day}} {{all_events.end_date_time|date:"F"}} {{all_events.end_date_time.year}}
+                            </p>
+                            <a class="card__title card--events-title" href="{% url "event_detail" all_events.slug %}">
+                                {{all_events.name}}
+                            </a>
+                            <ul class="card__list card-list">
+                                <li class="card-list__item">
+                                    <p class="card-list__text">
+                                        {{all_events.location}}
+                                    </p>
+                                </li>
+                                <li class="card-list__item">
+                                    <a class="card-list__link" href="{% url "event_detail" all_events.slug %}">
+                                        by {{all_events.center}}
+                                    </a>
+                                </li>
+                            </ul>
+                            <a class="card-box__poster" href="{% url "event_detail" all_events.slug %}">
+                                <img class="card-box__poster-img" src="{{all_events.card.url}}" alt="img">
+                                <p class="card-box__poster-text">
+                                    {{all_events.entry}}
+                                </p>
+                            </a>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                <div class="group-profile__wrapper" id="3">
+                    <div class="members__inner">
+                        {% for group_member in team %}
+                        <div class="members__card card">
+                            <div class="card__inner">
+                                <p class="card__suptext">
+                                    {{group_member.name.designation}}
+                                </p>
+                                
+                                <h3 class="card__title">
+                                    {{group_member.name.name}}
+                                </h3>
+                                <a class="card__text" href="#">
+                                    {{group_member.name.user}}
+                                </a>
+                                <p class="card__subtext">
+                                    Joined {{group_member.name.joined}}
+                                </p>
+                                <div class="card__box card-box">
+                                    <div class="card-box__person-img card-person-img">
+                                        <img class="card-person-img__image" src="{{group_member.name.image.url}}" alt="img">
+                                        <span class="card-person-img__status">
+    
+                                        </span>
+                                    </div>
+                                    <a class="card-box__link" href="{% url "profile_page_output" group_member.name.slug %}">
+                                        Send Message
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="group-profile__wrapper" id="4">
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    {% endblock body %}

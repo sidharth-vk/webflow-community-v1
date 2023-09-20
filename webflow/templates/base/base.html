@@ -1,0 +1,292 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Design Lab</title>
+    <link rel="stylesheet" href="{% static 'css/swiper-bundle.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/fancybox.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/style.min.css' %}">
+</head>
+
+<body >
+
+    
+    
+       <div class="cursor"></div>
+        <div class="cursor-follower"></div>
+    
+    
+
+    <header class="header">
+        <div class="container">
+            <div class="header__inner">
+                <a class="header__logo logo" href="#">
+                    <img class="logo__img " src="{% static "image/logo.png" %}" alt="img">
+                </a>
+                <div class="header__wrapper">
+                    
+                    <form class="header__search search" action="#">
+                        <button class="search__btn" type="button">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M11 19C15.4182 19 19 15.4183 19 11C19 6.58172 15.4182 3 11 3C6.58169 3 2.99997 6.58172 2.99997 11C2.99997 15.4183 6.58169 19 11 19Z"
+                                    stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                <path d="M21 21L16.65 16.65" stroke="white" stroke-width="1.5" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                        </button>
+                        <input class="search__input" type="text" placeholder="Search...">
+                    </form>
+                    <div class="header__user-nav user-nav">
+                        <a class="user-nav__link" href="#">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M7.99997 10H16M7.99997 14H12M21 12C21 16.9706 16.9705 21 12 21C10.843 21 9.73698 20.7817 8.72092 20.384C8.33906 20.2345 7.92595 20.1704 7.52157 20.2385L3.69273 20.8833C3.35371 20.9404 3.05954 20.6463 3.11664 20.3072L3.76144 16.4784C3.82954 16.074 3.76544 15.6609 3.61598 15.279C3.21829 14.263 2.99997 13.157 2.99997 12C2.99997 7.02944 7.02941 3 12 3C16.9705 3 21 7.02944 21 12Z"
+                                    stroke="white" stroke-width="1.5" stroke-linecap="round" />
+                            </svg>
+                            <span>
+                                1
+                            </span>
+                        </a>
+                        <a class="user-nav__link" href="#">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M5.99997 8C5.99997 6.4087 6.63211 4.88258 7.75733 3.75736C8.88255 2.63214 10.4087 2 12 2C13.5913 2 15.1174 2.63214 16.2426 3.75736C17.3678 4.88258 18 6.4087 18 8C18 15 21 17 21 17H2.99997C2.99997 17 5.99997 15 5.99997 8Z"
+                                    stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                <path
+                                    d="M10.3 21C10.4673 21.3044 10.7134 21.5583 11.0124 21.7352C11.3115 21.912 11.6525 22.0053 12 22.0053C12.3474 22.0053 12.6884 21.912 12.9875 21.7352C13.2865 21.5583 13.5326 21.3044 13.7 21"
+                                    stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                            <span>
+                                7
+                            </span>
+                        </a>
+                        <a class="user-nav__link" href="#">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M8.99998 10V6C8.99998 4.34315 10.3431 3 12 3C13.6568 3 15 4.34315 15 6V10M4.99998 18H19M6.14793 22H17.852C19.0127 22 19.9296 21.0152 19.8469 19.8575L19.1327 9.8575C19.0579 8.81089 18.187 8 17.1377 8H6.86222C5.81294 8 4.94206 8.81089 4.8673 9.85751L4.15301 19.8575C4.07032 21.0152 4.98725 22 6.14793 22Z"
+                                    stroke="white" stroke-width="1.5" stroke-linecap="round" />
+                            </svg>
+                            <span>
+                                4
+                            </span>
+                        </a>
+                    </div>
+                </div>
+                <form class="header__form header-form" action="#">
+                    {% if user.is_authenticated %}
+                    <div class="header-form__img">
+                        <a href="{% url "profile_page_output" user.profiles.slug %}"><img class="header-form__img-image" src="{{user.profiles.image.url}}" alt="img"></a>
+                    </div>
+                    <div class="header-form__select custom-select">
+                        
+                    </div>
+                    <div class="header__lang lang">
+                        <div class="lang__top">
+                            
+                            <span>
+                                {{user.profiles.name}}
+                            </span>
+                            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path d="M2.99997 4.5L5.99997 7.5L8.99997 4.5" stroke="white" stroke-width="1.5"
+                                    stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </div>
+                        <div class="lang__box lang-box">
+                            <a class="lang-box__link" href="{% url "profile_page_output" user.profiles.slug %}">
+                                
+                                <span>
+                                    Profile 
+                                </span>
+                            </a>
+                            {% if origanisers  %}
+                            <a class="lang-box__link" href="{% url "dashboard" %}">
+                                
+                                <span>
+                                    Pannel
+                                </span>
+                            </a>
+                            {% endif %}
+                            <a class="lang-box__link" href="{% url "logout_user" %}">
+                                
+                                <span>
+                                    Logout
+                                </span>
+                            </a>
+                            
+                        </div>
+                    </div>
+                    {% else %}
+                    <div class="header-form__select custom-select">
+                        <a href="{% url "login" %}" class="act-btn">Login</a>
+                    </div>
+                    {% endif %}
+                </form>
+                
+                <button class="header__burger burger" type="button">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <div class="wrapper">
+        <main class="main">
+            {% include "base/navbar.html" %}
+        {% block body %}
+        
+        
+        {% endblock body %}
+
+       
+
+        <section class="main__popup " id="faq-popup">
+            <div class="popup__inner">
+                <h2 class="popup__title">
+                    Popular Questions
+                </h2>
+
+                <div class="popup-content">
+
+                    <ul>
+                        <li><i class="icon-book-open"></i><a href="index.html">How to Upload Your Portfolio </a></li>
+                        <li><i class="icon-book-open"></i><a href="index.html">How to Start To Work</a></li>
+                        <li><i class="icon-book-open"></i><a href="index.html">Get in touch with the Creator Support Team</a></li>
+                    </ul>
+                    <div class="form-help-links">
+                        <a class="fl-btn btn_first" href="index.html">Browse all articles</a>
+                        <a class="fl-btn btn_second" data-fancybox="" href="#report-popup">Send Feedback</a>
+                    </div>
+
+
+                    <div class="login-form__socials login-form-socials">
+                        <p class="login-form-socials__or">
+                            <span></span>
+                            or
+                            <span></span>
+                        </p>
+                        <ul class="login-form-socials__list socials">
+                            <li class="socials__item">
+                                <a class="socials__link" href="#" tabindex="0">
+                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <g id="social_icons">
+                                            <g id="Layer_x0020_1">
+                                                <path id="Vector" fill-rule="evenodd" clip-rule="evenodd" d="M5.92126 15.7984C5.92126 15.9097 6.01157 16 6.12282 16H8.99563C9.10688 16 9.19688 15.9097 9.19688 15.7984V7.93687H11.2797C11.3841 7.93687 11.4713 7.85656 11.4803 7.7525L11.6806 5.38375C11.6903 5.26625 11.5978 5.16531 11.4797 5.16531H9.19688V3.485C9.19688 3.09094 9.51626 2.77156 9.91001 2.77156H11.515C11.6266 2.77156 11.7166 2.68125 11.7166 2.57V0.201562C11.7166 0.0903125 11.6266 0 11.515 0H8.80313C7.21157 0 5.92126 1.29 5.92126 2.88156V5.16531H4.48501C4.37376 5.16531 4.28345 5.25563 4.28345 5.36688V7.73531C4.28345 7.84688 4.37376 7.93687 4.48501 7.93687H5.92126V15.7984Z" fill="white"></path>
+                                            </g>
+                                        </g>
+                                    </svg>
+                                </a>
+                            </li>
+                            <li class="socials__item">
+                                <a class="socials__link" href="#" tabindex="0">
+                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <g id="social_icons" clip-path="url(#clip0_187_9402)">
+                                            <g id="Layer_x0020_1">
+                                                <path id="Vector" fill-rule="evenodd" clip-rule="evenodd" d="M15.94 2.91286C15.4315 3.14286 14.8722 3.28224 14.3237 3.37443C14.8062 3.29349 15.5215 2.14068 15.6597 1.68849C15.7009 1.60568 15.6412 1.5763 15.5706 1.61161C14.9584 1.93974 14.325 2.17755 13.6509 2.34599C13.5243 2.37755 13.4484 2.22036 13.3506 2.13943C10.9584 0.103801 7.39841 2.14505 7.8631 5.29818C7.87341 5.37536 7.86685 5.38568 7.79716 5.37536C5.16028 4.98255 2.97466 4.03943 1.20028 2.01724C1.12341 1.92943 1.08153 1.92974 1.01841 2.02411C0.0843455 3.42411 0.758408 5.37005 1.99403 6.33318C1.94153 6.3438 1.29622 6.2738 0.720908 5.97661C0.644033 5.92786 0.605283 5.95599 0.59872 6.04318C0.520595 7.41318 1.76903 9.0138 3.12716 9.24693C2.87216 9.30286 2.60966 9.34286 1.87872 9.28568C1.78778 9.26818 1.75278 9.31349 1.78778 9.40099C2.33716 10.8982 3.52278 11.3438 4.41091 11.5976C4.52966 11.6185 4.64872 11.6185 4.7681 11.6463C4.11903 12.611 1.31403 13.0713 0.234658 12.9651C0.15997 12.9541 -0.121592 12.9147 0.0599705 13.0629C6.46966 17.2885 14.4522 12.7663 14.4522 4.72818C14.4522 4.62443 14.5743 4.56755 14.6472 4.51286C14.9809 4.26193 16 3.34255 16 2.91286C16 2.87036 16.005 2.88349 15.94 2.91286Z" fill="white"></path>
+                                            </g>
+                                        </g>
+                                        <defs>
+                                            <clipPath id="clip0_187_9402">
+                                                <rect width="16" height="16" fill="white"></rect>
+                                            </clipPath>
+                                        </defs>
+                                    </svg>
+                                </a>
+                            </li>
+                            <li class="socials__item">
+                                <a class="socials__link" href="#" tabindex="0">
+                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <g id="social_icons" clip-path="url(#clip0_187_9379)">
+                                            <path id="Vector" d="M0 8C0 3.5888 3.5888 0 8 0C9.78156 0 11.4678 0.573181 12.8765 1.6576L11.0174 4.07253C10.1464 3.40206 9.10301 3.04762 8 3.04762C5.26926 3.04762 3.04762 5.26926 3.04762 8C3.04762 10.7307 5.26926 12.9524 8 12.9524C10.1994 12.9524 12.0684 11.5114 12.7125 9.52381H8V6.47619H16V8C16 12.4112 12.4112 16 8 16C3.5888 16 0 12.4112 0 8Z" fill="white"></path>
+                                        </g>
+                                        <defs>
+                                            <clipPath id="clip0_187_9379">
+                                                <rect width="16" height="16" fill="white"></rect>
+                                            </clipPath>
+                                        </defs>
+                                    </svg>
+                                </a>
+                            </li>
+                            <li class="socials__item">
+                                <a class="socials__link" href="#" tabindex="0">
+                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <g id="social_icons" clip-path="url(#clip0_187_9414)">
+                                            <g id="Layer_x0020_1">
+                                                <path id="Vector" fill-rule="evenodd" clip-rule="evenodd" d="M0.32085 16H3.62241V5.33313H0.32085V16ZM8.90054 10.4006C8.90054 8.90125 9.59085 8.0075 10.9124 8.0075C12.1265 8.0075 12.7096 8.86531 12.7096 10.4006V16H15.9962C15.9962 16 15.9962 12.1038 15.9962 9.24656C15.9962 6.38938 14.3765 5.00781 12.1149 5.00781C9.85241 5.0075 8.90054 6.77 8.90054 6.77V5.33313H5.73335V16H8.90054C8.90054 16 8.90054 12.0441 8.90054 10.4006ZM1.95616 3.93688C3.03429 3.93688 3.90866 3.05469 3.90866 1.96812C3.90866 0.88125 3.03429 0 1.95616 0C0.877412 0 0.00366211 0.88125 0.00366211 1.96812C0.00366211 3.05469 0.877412 3.93688 1.95616 3.93688Z" fill="white"></path>
+                                            </g>
+                                        </g>
+                                        <defs>
+                                            <clipPath id="clip0_187_9414">
+                                                <rect width="16" height="16" fill="white"></rect>
+                                            </clipPath>
+                                        </defs>
+                                    </svg>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section class="main__popup " id="report-popup">
+            <div class="popup__inner">
+                <h2 class="popup__title">
+                    Report form
+                </h2>
+
+                <div class="popup-content">
+                    <div id="send-feedback">
+                        <input class="fl-input" type="text" placeholder="Your Name">
+                        <input class="input" type="text" placeholder="Your Email">
+                        <textarea class="fl-textarea" placeholder="Your Comment" rows="3"></textarea>
+                        <button class="comment__form-btn" type="button">
+                            Send Message
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        </main>
+        <footer class="footer">
+            <div class="container">
+                <p class="footer__copy">
+                    WebFlow Community © 2023. All rights reserved.
+                </p>
+            </div>
+        </footer>
+
+    </div>
+        
+        
+
+    <button class="switch-button"></button>
+    
+  
+
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/swiper-bundle.min.js' %}"></script>
+    <script src="{% static 'js/fancybox.umd.js' %}"></script>
+    <script src="{% static 'js/tweenMax.min.js' %}"></script>
+    <script src="{% static 'js/main.min.js' %}"></script>
+    
+    
+    
+</body>
+
+</html>

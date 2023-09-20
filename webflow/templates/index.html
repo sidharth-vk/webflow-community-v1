@@ -1,0 +1,295 @@
+
+{% extends "base/base.html" %}
+ {% load static %}
+    {% block body %}
+        
+
+            <section class="main__heading heading">
+                <div class="container">
+                    <h1 class="heading__title">
+                        <span>
+                            Join
+                        </span>
+                         WebFlow Community for Designers
+                        <span>
+                            and
+                        </span>
+                        Developers
+                    </h1>
+                </div>
+            </section>
+
+
+
+
+            <section class="main__count count">
+                <div class="container">
+                    <div class="count__inner">
+                        <a class="count__item count-item" href="{% url "member" %}">
+                            <div class="count-item__icon">
+                                <svg width="16" height="16" viewBox="0 0 12 12" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <g id="icons">
+                                        <path id="Icon"
+                                            d="M2.5 6H9M6.5 3L9.14645 5.64645C9.34171 5.84171 9.34171 6.15829 9.14645 6.35355L6.5 9"
+                                            stroke="#fff" stroke-width="1.5" stroke-linecap="round" />
+                                    </g>
+                                </svg>
+                            </div>
+                            <p class="count-item__text">
+                                <span>
+                                    {{total_members}}+
+                                </span>
+                            </p>
+                            <p class="count-item__subtext">
+                                members
+                            </p>
+                        </a>
+                        <a class="count__item count-item" href="{% url "groups" %}">
+                            <div class="count-item__icon">
+                                <svg width="16" height="16" viewBox="0 0 12 12" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <g id="icons">
+                                        <path id="Icon"
+                                            d="M2.5 6H9M6.5 3L9.14645 5.64645C9.34171 5.84171 9.34171 6.15829 9.14645 6.35355L6.5 9"
+                                            stroke="#fff" stroke-width="1.5" stroke-linecap="round" />
+                                    </g>
+                                </svg>
+                            </div>
+                            <p class="count-item__text">
+                                <span>
+                                    {{total_group}}+
+                                </span>
+                            </p>
+                            <p class="count-item__subtext">
+                                groups
+                            </p>
+                        </a>
+                        <a class="count__item count-item" href="{% url "all_event" %}">
+                            <div class="count-item__icon">
+                                <svg width="16" height="16" viewBox="0 0 12 12" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <g id="icons">
+                                        <path id="Icon"
+                                            d="M2.5 6H9M6.5 3L9.14645 5.64645C9.34171 5.84171 9.34171 6.15829 9.14645 6.35355L6.5 9"
+                                            stroke="#fff" stroke-width="1.5" stroke-linecap="round" />
+                                    </g>
+                                </svg>
+                            </div>
+                            <p class="count-item__text">
+                                <span>
+                                    {{total_events}}+
+                                </span>
+                            </p>
+                            <p class="count-item__subtext">
+                                Events
+                            </p>
+                        </a>
+                        <a class="count__item count-item" href="#">
+                            <div class="count-item__icon">
+                                <svg width="16" height="16" viewBox="0 0 12 12" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <g id="icons">
+                                        <path id="Icon"
+                                            d="M2.5 6H9M6.5 3L9.14645 5.64645C9.34171 5.84171 9.34171 6.15829 9.14645 6.35355L6.5 9"
+                                            stroke="#fff" stroke-width="1.5" stroke-linecap="round" />
+                                    </g>
+                                </svg>
+                            </div>
+                            <p class="count-item__text">
+                                <span>
+                                    4.9
+                                </span>
+                                <svg width="12" height="12" viewBox="0 0 12 12" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <g id="icons" clip-path="url(#clip0_114_9488)">
+                                        <path id="Vector"
+                                            d="M11.9687 4.60317C11.8902 4.36018 11.6746 4.1876 11.4197 4.16462L7.95614 3.85013L6.58656 0.644511C6.48558 0.40958 6.25559 0.257507 6.00006 0.257507C5.74453 0.257507 5.51454 0.40958 5.41356 0.64506L4.04399 3.85013L0.579908 4.16462C0.325385 4.18815 0.110414 4.36018 0.0314019 4.60317C-0.0476102 4.84616 0.0253592 5.11267 0.2179 5.28068L2.83592 7.5767L2.06392 10.9773C2.00744 11.2274 2.10448 11.4858 2.31195 11.6358C2.42346 11.7164 2.55393 11.7574 2.68549 11.7574C2.79893 11.7574 2.91145 11.7268 3.01244 11.6664L6.00006 9.88077L8.98659 11.6664C9.20513 11.7978 9.48062 11.7858 9.68762 11.6358C9.89518 11.4854 9.99214 11.2268 9.93565 10.9773L9.16366 7.5767L11.7817 5.28113C11.9742 5.11267 12.0477 4.84661 11.9687 4.60317Z"
+                                            fill="#F9D442" />
+                                    </g>
+                                    <defs>
+                                        <clipPath id="clip0_114_9488">
+                                            <rect width="12" height="12" fill="white" />
+                                        </clipPath>
+                                    </defs>
+                                </svg>
+                            </p>
+                            <p class="count-item__subtext">
+                                320+ ratings
+                            </p>
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+
+            <div class="main__section-top section-top section-top--main">
+                <div class="container">
+                    <div class="section-top__inner" style="justify-content: space-between">
+                        <div class="section-top__content section-top-content">
+                            <p class="section-top-content__date">
+                                Oct 8 – Oct 9, 2023
+                            </p>
+                            <h1 class="section-top-content__title title">
+                                Hack-A-Thon <br>
+                                2023
+                            </h1>
+                            <ul class="section-top-content__list card-list">
+                                <li class="card-list__item">
+                                    <p class="card-list__text">
+                                        Mukka, Mangalore
+                                    </p>
+                                </li>
+                                <li class="card-list__item">
+                                    <p class="card-list__text">
+                                        SUIET
+                                    </p>
+                                </li>
+                            </ul>
+                            <div class="section-top-content__buttons">
+                                <a class="section-top-content__buttons-link section-top-content__buttons-link--green"
+                                    href="#">
+                                    Register Now
+                                </a>
+                            </div>
+                        </div>
+                        <div class="section-top__img">
+                            <img class="section-top__img-image" src="{% static "image/codemeet/hack-a-thon.png" %}"  alt="img">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <section class="main__elevate elevate">
+                <div class="container">
+                    <div class="elevate__inner">
+                        <div class="elevate__content elevate-content">
+                            <h2 class="elevate-content__title">
+                                Elevate Your <br>
+                                Dev Journey<br>
+                                with the
+                                <span>
+                                    <br>
+                                    WebFlow Community <br>
+                                </span>
+                               
+                            </h2>
+                            <a class="elevate-content__link"  href="">
+                                Join Now
+                            </a>
+                        </div>
+                        <div class="elevate__view elevate-view">
+                            <div class="elevate-view__box">
+                                <p class="elevate-view__box-text">
+                                    17K+
+                                </p>
+                                <p class="elevate-view__box-subtext">
+                                    professionals
+                                </p>
+                            </div>
+                            <img class="elevate-view__img" src="{% static "image/icon/1.png" %}" alt="img">
+                            <img class="elevate-view__img" src="{% static "image/icon/3.png" %}" alt="img">
+                            <img class="elevate-view__img" src="{% static "image/icon/2.png" %}" alt="img">
+                            <img class="elevate-view__img" src="{% static "image/icon/4.png" %}" alt="img">
+                            <img class="elevate-view__img" src="{% static "image/icon/5.png" %}" alt="img">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="main__groups-section groups-section">
+                <div class="container">
+                    <div class="groups-section__top groups-section-top">
+                        <h2 class="groups-section-top__title">
+                            Popular Groups
+                        </h2>
+                        <div class="groups-section__buttons swiper-buttons">
+                            <a class="members-section-top-body-box__buttons-link" href="{% url "groups" %}">
+                              
+                                <span>
+                                    View More
+                                </span>
+                            </a>
+                            
+                        </div>
+                    </div>
+                    <div class="groups__inner">
+                        {% for all_groups in groups %}
+                          <div class="groups__card card">
+                              <div class="card__inner">
+                                  <p class="card__suptext card__suptext--pink">
+                                      WebFlow Community
+                                  </p>
+                                  
+                                  <a class="card__title" href="{% url "groups_view" all_groups.slug %}">
+                                      {{all_groups.name}}
+                                  </a>
+                                  <ul class="card__list card-list">
+                                      <li class="card-list__item">
+                                          <p class="card-list__text">
+                                              Formed on {{all_groups.formed}}
+                                          </p>
+                                      </li>
+                                      <li class="card-list__item">
+                                          <p class="card-list__text">
+                                              293 Members
+                                          </p>
+                                      </li>
+                                  </ul>
+                                  <a class="card-box__poster" href="{% url "groups_view" all_groups.slug %}">
+                                      <img class="card-box__poster-img" src="{{all_groups.img.url}}" alt="img">
+                                  </a>
+                              </div>
+                          </div>
+                          {% endfor %}
+                    </div>
+                    
+                </div>
+            </section>
+
+
+            <div class="main__section-top section-top section-top--main">
+                <div class="container">
+                    <div class="section-top__inner" style="justify-content: space-between">
+                        <div class="section-top__content section-top-content">
+                            <p class="section-top-content__date">
+                                Oct 6 – Oct 9, 2023
+                            </p>
+                            <h1 class="section-top-content__title title">
+                                CODE <br>
+                                MEET ‘23
+                            </h1>
+                            <ul class="section-top-content__list card-list">
+                                <li class="card-list__item">
+                                    <p class="card-list__text">
+                                        Mukka, Mangalore
+                                    </p>
+                                </li>
+                                <li class="card-list__item">
+                                    <p class="card-list__text">
+                                        SUIET
+                                    </p>
+                                </li>
+                            </ul>
+                            
+                            <div class="section-top-content__buttons">
+                                <a class="section-top-content__buttons-link section-top-content__buttons-link--green" href="{% url "codemeet" %}">
+                                    Explore Events
+                                </a>
+                            </div>
+                        </div>
+                        <div class="section-top__img">
+                            <img class="section-top__img-image" src="{% static "image/codemeet/Code Meet banner.png" %}" alt="img">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+           
+          
+
+            
+        </main>
+    {% endblock body %}

@@ -1,0 +1,1785 @@
+{% extends "base/base.html" %}
+ {% load static %}
+    {% block body %}
+{% for all_groups in all_groups %}
+    <div class="section-top section-top--space">
+        <div class="container">
+            <div class="section-top__inner" style="justify-content: space-between;">
+                <div class="section-top__content section-top-content">
+                    <p class="section-top-content__suptext">
+                        WebFlow Community
+                    </p>
+                    <h1 class="section-top-content__title title">
+                        {{all_groups.name}}
+                    </h1>
+                    <ul class="section-top-content__list card-list">
+                        <li class="card-list__item">
+                            <p class="card-list__text">
+                                formed on {{all_groups.formed}}
+                            </p>
+                        </li>
+                        <li class="card-list__item">
+                            <a class="card-list__link" href="#">
+                                Group Administrators
+                                <img class="card-list__link-img" src="{{all_groups.leader.image.url}}" alt="img">
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="section-top-content__buttons">
+                        <a class="section-top-content__buttons-link section-top-content__buttons-link--green"
+                            href="#">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M12.6667 9.33333C13.66 8.36 14.6667 7.19333 14.6667 5.66667C14.6667 4.69421 14.2804 3.76158 13.5927 3.07394C12.9051 2.38631 11.9725 2 11 2C9.82668 2 9.00001 2.33333 8.00001 3.33333C7.00001 2.33333 6.17334 2 5.00001 2C4.02755 2 3.09492 2.38631 2.40729 3.07394C1.71965 3.76158 1.33334 4.69421 1.33334 5.66667C1.33334 7.2 2.33334 8.36667 3.33334 9.33333L8.00001 14L12.6667 9.33333Z"
+                                    stroke="#fff" stroke-width="1.5" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                            <span>
+                                Subscribe
+                            </span>
+                        </a>
+                        <a class="section-top-content__buttons-link" href="#">
+                            Leave Group
+                        </a>
+                    </div>
+                </div>
+
+                <div class="section-top__img " data-background-image="{{all_groups.img2.url}}">
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <section class="main__group-profile group-profile">
+        <div class="container">
+            <div class="group-profile__tabs tabs">
+                <button class="tabs__btn tabs__btn--active" type="button" id="0">
+                    Home
+                </button>
+                <button class="tabs__btn" type="button" id="1">
+                    Info
+                </button>
+
+                <button class="tabs__btn" type="button" id="3">
+                    Members
+                    <span>
+                        {{group_member_total}}
+                    </span>
+                </button>
+                <button class="tabs__btn" type="button" id="4">
+                    Forum
+                </button>
+            </div>
+            <div class="group-profile__inner">
+                <div class="group-profile__wrapper group-profile__wrapper--active" id="0">
+                    <section class="group-profile__posts group-profile-posts">
+                        
+                        <div class="group-profile-posts__inner">
+
+                            {% for grp_feeds in grp_feeds %}
+                            <div class="group-profile-posts__post post">
+                                <div class="post__body post-body">
+                                    <div class="post-body__top post-body-top">
+                                        <a class="post-body-top__link" href="">
+                                            <img class="post-body-top__link-img"
+                                                src="{{grp_feeds.author.image.url}}" alt="img">
+                                        </a>
+                                        <div class="post-body-top__box">
+                                            <p class="post-body-top__box-text">
+                                                <a href="#">
+                                                    {{grp_feeds.author}}
+                                                </a>
+                                                posted an update in the group
+                                                <span>
+                                                    {{grp_feeds.group}}
+                                                </span>
+                                            </p>
+                                            <p class="post-body-top__box-subtext">
+                                                {{grp_feeds.date}}
+                                            </p>
+                                        </div>
+                                        
+                                    </div>
+                                    <div class="post-body__view post-body-view">
+                                        <a class="post-body-view__link" href="{{grp_feeds.link}}">
+                                            <img class="post-body-view__link-img"
+                                                src="{{grp_feeds.img.url}}" alt="img" style="height:100%; width:100%;">
+                                        </a>
+                                    </div>
+                                    
+                                </div>
+                               
+                            </div>
+                            {% endfor %}
+
+                        </div>
+
+                    </section>
+                    <aside class="group-profile__aside group-profile-aside">
+                        <div class="group-profile-aside__aside-block aside-block">
+                            <h3 class="aside-block__title">
+                                Group Administrators
+                            </h3>
+                            <div class="aside-block__item aside-block-item">
+                                <a class="aside-block-item__img" href="{% url "profile_page_output" all_groups.leader.slug %}">
+                                    <img class="aside-block-item__img-image" src="{{all_groups.leader.image.url}}"
+                                        alt="img">
+                                </a>
+                                <div class="aside-block-item__box aside-block-item-box">
+                                    <p class="aside-block-item-box__text">
+                                        <a href="{% url "profile_page_output" all_groups.leader.slug %}">
+                                            {{all_groups.leader.name}}
+                                        </a>
+                                    </p>
+                                    <p class="aside-block-item-box__subtext">
+                                        @{{all_groups.leader.user}}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="group-profile-aside__aside-block aside-block">
+                            <h3 class="aside-block__title">
+                                Activity Feed
+                            </h3>
+                            <div class="aside-block__item aside-block-item">
+                                <a class="aside-block-item__img" href="#">
+                                    <img class="aside-block-item__img-image" src="images/member-icon-12.png"
+                                        alt="img">
+                                </a>
+                                <div class="aside-block-item__box aside-block-item-box">
+                                    <p class="aside-block-item-box__text">
+                                        <a href="#">
+                                            Katie Campbell
+                                        </a>
+                                        posted an update in the group
+                                        <span>
+                                            Graphic Design
+                                        </span>
+                                    </p>
+                                    <p class="aside-block-item-box__subtext">
+                                        3 month ago
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="aside-block__item aside-block-item">
+                                <a class="aside-block-item__img" href="#">
+                                    <img class="aside-block-item__img-image" src="images/member-icon-25.png"
+                                        alt="img">
+                                </a>
+                                <div class="aside-block-item__box aside-block-item-box">
+                                    <p class="aside-block-item-box__text">
+                                        <a href="#">
+                                            Leila Calderon
+                                        </a>
+                                        posted a photo
+                                    </p>
+                                    <p class="aside-block-item-box__subtext">
+                                        4 month ago
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="aside-block__item aside-block-item">
+                                <a class="aside-block-item__img" href="#">
+                                    <img class="aside-block-item__img-image" src="images/member-icon-18.png"
+                                        alt="img">
+                                </a>
+                                <div class="aside-block-item__box aside-block-item-box">
+                                    <p class="aside-block-item-box__text">
+                                        <a href="#">
+                                            Katie Campbell
+                                        </a>
+                                        and
+                                        <a href="#">
+                                            Farrell Villa
+                                        </a>
+                                        are now friends
+                                    </p>
+                                    <p class="aside-block-item-box__subtext">
+                                        7 month ago
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="aside-block__item aside-block-item">
+                                <a class="aside-block-item__img" href="#">
+                                    <img class="aside-block-item__img-image" src="images/member-icon-22.png"
+                                        alt="img">
+                                </a>
+                                <div class="aside-block-item__box aside-block-item-box">
+                                    <p class="aside-block-item-box__text">
+                                        <a href="#">
+                                            Katie Campbell
+                                        </a>
+                                        posted an update
+                                    </p>
+                                    <p class="aside-block-item-box__subtext">
+                                        10 month ago
+                                    </p>
+                                </div>
+                            </div>
+                            <a class="aside-block__link" href="#">
+                                Show All
+                            </a>
+                        </div>
+                        <div class="group-profile-aside__aside-block aside-block aside-block--medium-squeres">
+                            <h3 class="aside-block__title">
+                                Recent Posts
+                            </h3>
+                            <div class="aside-block__item aside-block-item">
+                                <a class="aside-block-item__img" href="#">
+                                    <img class="aside-block-item__img-image" src="images/group-img-11.jpg"
+                                        alt="img">
+                                </a>
+                                <div class="aside-block-item__box aside-block-item-box">
+                                    <p class="aside-block-item-box__text">
+                                        <a href="#">
+                                            Tackle Your closest Spring cleaning
+                                        </a>
+                                    </p>
+                                    <p class="aside-block-item-box__subtext">
+                                        May 14, 2023
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="aside-block__item aside-block-item">
+                                <a class="aside-block-item__img" href="#">
+                                    <img class="aside-block-item__img-image" src="images/group-img-6.jpg"
+                                        alt="img">
+                                </a>
+                                <div class="aside-block-item__box aside-block-item-box">
+                                    <p class="aside-block-item-box__text">
+                                        <a href="#">
+                                            The Truth About Business Blogging
+                                        </a>
+                                    </p>
+                                    <p class="aside-block-item-box__subtext">
+                                        May 13, 2023
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="aside-block__item aside-block-item">
+                                <a class="aside-block-item__img" href="#">
+                                    <img class="aside-block-item__img-image" src="images/group-img-4.jpg"
+                                        alt="img">
+                                </a>
+                                <div class="aside-block-item__box aside-block-item-box">
+                                    <p class="aside-block-item-box__text">
+                                        <a href="#">
+                                            OMA completes renovation of Sotheby’s New York galleries
+                                        </a>
+                                    </p>
+                                    <p class="aside-block-item-box__subtext">
+                                        May 5, 2023
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="aside-block__item aside-block-item">
+                                <a class="aside-block-item__img" href="#">
+                                    <img class="aside-block-item__img-image" src="images/group-img-2.jpg"
+                                        alt="img">
+                                </a>
+                                <div class="aside-block-item__box aside-block-item-box">
+                                    <p class="aside-block-item-box__text">
+                                        <a href="#">
+                                            Visiting Amsterdam on a Budget
+                                        </a>
+                                    </p>
+                                    <p class="aside-block-item-box__subtext">
+                                        May 2, 2023
+                                    </p>
+                                </div>
+                            </div>
+                            <a class="aside-block__link" href="#">
+                                Show All
+                            </a>
+                        </div>
+                        <div class="group-profile-aside__aside-block aside-block">
+                            <h3 class="aside-block__title">
+                                Members
+                            </h3>
+                            {% for group_member in group_member %}
+                            <div class="aside-block__item aside-block-item">
+                                <a class="aside-block-item__img" href="{% url "profile_page_output" group_member.user.slug %}">
+                                    <img class="aside-block-item__img-image" src="{{group_member.user.image.url}}"
+                                        alt="img">
+                                </a>
+                                <div class="aside-block-item__box aside-block-item-box">
+                                    <p class="aside-block-item-box__text">
+                                        <a href="#">
+                                            {{group_member.user.name}}
+                                        </a>
+                                    </p>
+                                    <a class="aside-block-item-box__link" href="{% url "profile_page_output" group_member.user.slug %}">
+                                        @{{group_member.user.user}}
+                                    </a>
+                                </div>
+                            </div>
+                            {% endfor %}
+                            <a class="aside-block__link" href="#">
+                                Show All
+                            </a>
+                        </div>
+                        
+                    </aside>
+                </div>
+
+                <div class="group-profile__wrapper " id="1">
+                    <div class="members-section__subwrapper">
+                        <section class="members-section__profile-info profile-info">
+                            <div class="profile-info__about profile-info-about">
+                                <h2 class="profile-info-about__title">
+                                    About
+                                </h2>
+                                <p class="profile-info-about__text">
+                                    {{all_groups.about}}
+                                </p>
+                                
+                            </div>
+                            <div class="profile-info__instruments profile-info-instruments">
+                                <h3 class="profile-info-instruments__title">
+                                    Skills
+                                </h3>
+                                <ul class="profile-info-instruments__list">
+                                   {% for grp_skill in grp_skill %}
+                                    <li class="profile-info-instruments__list-item">
+                                        <div class="profile-info-instruments__list-icon">
+                                            <img src="{{grp_skill.image.url}}" style="height: 30px" alt="img">
+                                        </div>
+                                        {{grp_skill.tech}}
+                                    </li>
+                                   {% endfor %}
+                                    
+                                </ul>
+                            </div>
+                            <div class="profile-info__instruments profile-info-instruments">
+                              <h3 class="profile-info-instruments__title">
+                                  Talks About
+                              </h3>
+                              <ul class="profile-info-instruments__list">
+                                 {% for grp_talks_abouts in grp_talks_abouts %}
+                                  <li class="profile-info-instruments__list-item">
+                                      #{{grp_talks_abouts.title}}
+                                  </li>
+                                 {% endfor %}
+                                  
+                              </ul>
+                          </div>
+  
+                            {% comment %} <div class="profile-info__experience profile-info-experience">
+                                <h2 class="profile-info-experience__title">
+                                    Work & Experience
+                                </h2>
+                                <div class="profile-info-experience__inner">
+  
+                                   {% for user_works in user_works %}
+                                    <div class="profile-info-experience__box profile-info-experience-box">
+                                        <p class="profile-info-experience-box__suptext">
+                                           {{user_works.year}}
+                                        </p>
+                                        <p class="profile-info-experience-box__speciality">
+                                            {{user_works.title}}
+                                        </p>
+                                        <p class="profile-info-experience-box__subtext">
+                                            {{user_works.company}}
+                                        </p>
+                                        <p class="profile-info-experience-box__text">
+                                           {{user_works.des}}
+                                        </p>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                            </div> {% endcomment %}
+  
+                        </section>
+                       
+                        <section class="courses-section__reviews reviews">
+                            <div class="reviews__top reviews-top">
+                                <div class="reviews-top__content reviews-top-content">
+                                    <p class="reviews-top-content__rait">
+                                        5.0
+                                    </p>
+                                    <div class="reviews-top-content__stars stars">
+                                        <div class="stars__star stars-star">
+                                            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <g id="icons" clip-path="url(#clip0_114_9488)">
+                                                    <path id="Vector"
+                                                        d="M11.9687 4.60317C11.8902 4.36018 11.6746 4.1876 11.4197 4.16462L7.95614 3.85013L6.58656 0.644511C6.48558 0.40958 6.25559 0.257507 6.00006 0.257507C5.74453 0.257507 5.51454 0.40958 5.41356 0.64506L4.04399 3.85013L0.579908 4.16462C0.325385 4.18815 0.110414 4.36018 0.0314019 4.60317C-0.0476102 4.84616 0.0253592 5.11267 0.2179 5.28068L2.83592 7.5767L2.06392 10.9773C2.00744 11.2274 2.10448 11.4858 2.31195 11.6358C2.42346 11.7164 2.55393 11.7574 2.68549 11.7574C2.79893 11.7574 2.91145 11.7268 3.01244 11.6664L6.00006 9.88077L8.98659 11.6664C9.20513 11.7978 9.48062 11.7858 9.68762 11.6358C9.89518 11.4854 9.99214 11.2268 9.93565 10.9773L9.16366 7.5767L11.7817 5.28113C11.9742 5.11267 12.0477 4.84661 11.9687 4.60317Z"
+                                                        fill="#F9D442" />
+                                                </g>
+                                                <defs>
+                                                    <clipPath id="clip0_114_9488">
+                                                        <rect width="12" height="12" fill="white" />
+                                                    </clipPath>
+                                                </defs>
+                                            </svg>
+                                        </div>
+                                        <div class="stars__star stars-star">
+                                            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <g id="icons" clip-path="url(#clip0_114_9488)">
+                                                    <path id="Vector"
+                                                        d="M11.9687 4.60317C11.8902 4.36018 11.6746 4.1876 11.4197 4.16462L7.95614 3.85013L6.58656 0.644511C6.48558 0.40958 6.25559 0.257507 6.00006 0.257507C5.74453 0.257507 5.51454 0.40958 5.41356 0.64506L4.04399 3.85013L0.579908 4.16462C0.325385 4.18815 0.110414 4.36018 0.0314019 4.60317C-0.0476102 4.84616 0.0253592 5.11267 0.2179 5.28068L2.83592 7.5767L2.06392 10.9773C2.00744 11.2274 2.10448 11.4858 2.31195 11.6358C2.42346 11.7164 2.55393 11.7574 2.68549 11.7574C2.79893 11.7574 2.91145 11.7268 3.01244 11.6664L6.00006 9.88077L8.98659 11.6664C9.20513 11.7978 9.48062 11.7858 9.68762 11.6358C9.89518 11.4854 9.99214 11.2268 9.93565 10.9773L9.16366 7.5767L11.7817 5.28113C11.9742 5.11267 12.0477 4.84661 11.9687 4.60317Z"
+                                                        fill="#F9D442" />
+                                                </g>
+                                                <defs>
+                                                    <clipPath id="clip0_114_9488">
+                                                        <rect width="12" height="12" fill="white" />
+                                                    </clipPath>
+                                                </defs>
+                                            </svg>
+                                        </div>
+                                        <div class="stars__star stars-star">
+                                            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <g id="icons" clip-path="url(#clip0_114_9488)">
+                                                    <path id="Vector"
+                                                        d="M11.9687 4.60317C11.8902 4.36018 11.6746 4.1876 11.4197 4.16462L7.95614 3.85013L6.58656 0.644511C6.48558 0.40958 6.25559 0.257507 6.00006 0.257507C5.74453 0.257507 5.51454 0.40958 5.41356 0.64506L4.04399 3.85013L0.579908 4.16462C0.325385 4.18815 0.110414 4.36018 0.0314019 4.60317C-0.0476102 4.84616 0.0253592 5.11267 0.2179 5.28068L2.83592 7.5767L2.06392 10.9773C2.00744 11.2274 2.10448 11.4858 2.31195 11.6358C2.42346 11.7164 2.55393 11.7574 2.68549 11.7574C2.79893 11.7574 2.91145 11.7268 3.01244 11.6664L6.00006 9.88077L8.98659 11.6664C9.20513 11.7978 9.48062 11.7858 9.68762 11.6358C9.89518 11.4854 9.99214 11.2268 9.93565 10.9773L9.16366 7.5767L11.7817 5.28113C11.9742 5.11267 12.0477 4.84661 11.9687 4.60317Z"
+                                                        fill="#F9D442" />
+                                                </g>
+                                                <defs>
+                                                    <clipPath id="clip0_114_9488">
+                                                        <rect width="12" height="12" fill="white" />
+                                                    </clipPath>
+                                                </defs>
+                                            </svg>
+                                        </div>
+                                        <div class="stars__star stars-star">
+                                            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <g id="icons" clip-path="url(#clip0_114_9488)">
+                                                    <path id="Vector"
+                                                        d="M11.9687 4.60317C11.8902 4.36018 11.6746 4.1876 11.4197 4.16462L7.95614 3.85013L6.58656 0.644511C6.48558 0.40958 6.25559 0.257507 6.00006 0.257507C5.74453 0.257507 5.51454 0.40958 5.41356 0.64506L4.04399 3.85013L0.579908 4.16462C0.325385 4.18815 0.110414 4.36018 0.0314019 4.60317C-0.0476102 4.84616 0.0253592 5.11267 0.2179 5.28068L2.83592 7.5767L2.06392 10.9773C2.00744 11.2274 2.10448 11.4858 2.31195 11.6358C2.42346 11.7164 2.55393 11.7574 2.68549 11.7574C2.79893 11.7574 2.91145 11.7268 3.01244 11.6664L6.00006 9.88077L8.98659 11.6664C9.20513 11.7978 9.48062 11.7858 9.68762 11.6358C9.89518 11.4854 9.99214 11.2268 9.93565 10.9773L9.16366 7.5767L11.7817 5.28113C11.9742 5.11267 12.0477 4.84661 11.9687 4.60317Z"
+                                                        fill="#F9D442" />
+                                                </g>
+                                                <defs>
+                                                    <clipPath id="clip0_114_9488">
+                                                        <rect width="12" height="12" fill="white" />
+                                                    </clipPath>
+                                                </defs>
+                                            </svg>
+                                        </div>
+                                        <div class="stars__star stars-star">
+                                            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <g id="icons" clip-path="url(#clip0_114_9488)">
+                                                    <path id="Vector"
+                                                        d="M11.9687 4.60317C11.8902 4.36018 11.6746 4.1876 11.4197 4.16462L7.95614 3.85013L6.58656 0.644511C6.48558 0.40958 6.25559 0.257507 6.00006 0.257507C5.74453 0.257507 5.51454 0.40958 5.41356 0.64506L4.04399 3.85013L0.579908 4.16462C0.325385 4.18815 0.110414 4.36018 0.0314019 4.60317C-0.0476102 4.84616 0.0253592 5.11267 0.2179 5.28068L2.83592 7.5767L2.06392 10.9773C2.00744 11.2274 2.10448 11.4858 2.31195 11.6358C2.42346 11.7164 2.55393 11.7574 2.68549 11.7574C2.79893 11.7574 2.91145 11.7268 3.01244 11.6664L6.00006 9.88077L8.98659 11.6664C9.20513 11.7978 9.48062 11.7858 9.68762 11.6358C9.89518 11.4854 9.99214 11.2268 9.93565 10.9773L9.16366 7.5767L11.7817 5.28113C11.9742 5.11267 12.0477 4.84661 11.9687 4.60317Z"
+                                                        fill="#F9D442" />
+                                                </g>
+                                                <defs>
+                                                    <clipPath id="clip0_114_9488">
+                                                        <rect width="12" height="12" fill="white" />
+                                                    </clipPath>
+                                                </defs>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <p class="reviews-top-content__subtext">
+                                        4 rating
+                                    </p>
+                                </div>
+                                <div class="reviews-top__body reviews-top-body">
+                                    <div class="reviews-top-body__item reviews-top-body-item">
+                                        <div class="reviews-top-body-item__stars stars">
+                                            <div class="stars__star stars__star">
+                                                <svg width="12" height="12" viewBox="0 0 12 12" fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <g id="icons" clip-path="url(#clip0_114_9488)">
+                                                        <path id="Vector"
+                                                            d="M11.9687 4.60317C11.8902 4.36018 11.6746 4.1876 11.4197 4.16462L7.95614 3.85013L6.58656 0.644511C6.48558 0.40958 6.25559 0.257507 6.00006 0.257507C5.74453 0.257507 5.51454 0.40958 5.41356 0.64506L4.04399 3.85013L0.579908 4.16462C0.325385 4.18815 0.110414 4.36018 0.0314019 4.60317C-0.0476102 4.84616 0.0253592 5.11267 0.2179 5.28068L2.83592 7.5767L2.06392 10.9773C2.00744 11.2274 2.10448 11.4858 2.31195 11.6358C2.42346 11.7164 2.55393 11.7574 2.68549 11.7574C2.79893 11.7574 2.91145 11.7268 3.01244 11.6664L6.00006 9.88077L8.98659 11.6664C9.20513 11.7978 9.48062 11.7858 9.68762 11.6358C9.89518 11.4854 9.99214 11.2268 9.93565 10.9773L9.16366 7.5767L11.7817 5.28113C11.9742 5.11267 12.0477 4.84661 11.9687 4.60317Z"
+                                                            fill="#F9D442" />
+                                                    </g>
+                                                    <defs>
+                                                        <clipPath id="clip0_114_9488">
+                                                            <rect width="12" height="12" fill="white" />
+                                                        </clipPath>
+                                                    </defs>
+                                                </svg>
+                                            </div>
+                                            <div class="stars__star stars__star">
+                                                <svg width="12" height="12" viewBox="0 0 12 12" fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <g id="icons" clip-path="url(#clip0_114_9488)">
+                                                        <path id="Vector"
+                                                            d="M11.9687 4.60317C11.8902 4.36018 11.6746 4.1876 11.4197 4.16462L7.95614 3.85013L6.58656 0.644511C6.48558 0.40958 6.25559 0.257507 6.00006 0.257507C5.74453 0.257507 5.51454 0.40958 5.41356 0.64506L4.04399 3.85013L0.579908 4.16462C0.325385 4.18815 0.110414 4.36018 0.0314019 4.60317C-0.0476102 4.84616 0.0253592 5.11267 0.2179 5.28068L2.83592 7.5767L2.06392 10.9773C2.00744 11.2274 2.10448 11.4858 2.31195 11.6358C2.42346 11.7164 2.55393 11.7574 2.68549 11.7574C2.79893 11.7574 2.91145 11.7268 3.01244 11.6664L6.00006 9.88077L8.98659 11.6664C9.20513 11.7978 9.48062 11.7858 9.68762 11.6358C9.89518 11.4854 9.99214 11.2268 9.93565 10.9773L9.16366 7.5767L11.7817 5.28113C11.9742 5.11267 12.0477 4.84661 11.9687 4.60317Z"
+                                                            fill="#F9D442" />
+                                                    </g>
+                                                    <defs>
+                                                        <clipPath id="clip0_114_9488">
+                                                            <rect width="12" height="12" fill="white" />
+                                                        </clipPath>
+                                                    </defs>
+                                                </svg>
+                                            </div>
+                                            <div class="stars__star stars__star">
+                                                <svg width="12" height="12" viewBox="0 0 12 12" fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <g id="icons" clip-path="url(#clip0_114_9488)">
+                                                        <path id="Vector"
+                                                            d="M11.9687 4.60317C11.8902 4.36018 11.6746 4.1876 11.4197 4.16462L7.95614 3.85013L6.58656 0.644511C6.48558 0.40958 6.25559 0.257507 6.00006 0.257507C5.74453 0.257507 5.51454 0.40958 5.41356 0.64506L4.04399 3.85013L0.579908 4.16462C0.325385 4.18815 0.110414 4.36018 0.0314019 4.60317C-0.0476102 4.84616 0.0253592 5.11267 0.2179 5.28068L2.83592 7.5767L2.06392 10.9773C2.00744 11.2274 2.10448 11.4858 2.31195 11.6358C2.42346 11.7164 2.55393 11.7574 2.68549 11.7574C2.79893 11.7574 2.91145 11.7268 3.01244 11.6664L6.00006 9.88077L8.98659 11.6664C9.20513 11.7978 9.48062 11.7858 9.68762 11.6358C9.89518 11.4854 9.99214 11.2268 9.93565 10.9773L9.16366 7.5767L11.7817 5.28113C11.9742 5.11267 12.0477 4.84661 11.9687 4.60317Z"
+                                                            fill="#F9D442" />
+                                                    </g>
+                                                    <defs>
+                                                        <clipPath id="clip0_114_9488">
+                                                            <rect width="12" height="12" fill="white" />
+                                                        </clipPath>
+                                                    </defs>
+                                                </svg>
+                                            </div>
+                                            <div class="stars__star stars__star">
+                                                <svg width="12" height="12" viewBox="0 0 12 12" fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <g id="icons" clip-path="url(#clip0_114_9488)">
+                                                        <path id="Vector"
+                                                            d="M11.9687 4.60317C11.8902 4.36018 11.6746 4.1876 11.4197 4.16462L7.95614 3.85013L6.58656 0.644511C6.48558 0.40958 6.25559 0.257507 6.00006 0.257507C5.74453 0.257507 5.51454 0.40958 5.41356 0.64506L4.04399 3.85013L0.579908 4.16462C0.325385 4.18815 0.110414 4.36018 0.0314019 4.60317C-0.0476102 4.84616 0.0253592 5.11267 0.2179 5.28068L2.83592 7.5767L2.06392 10.9773C2.00744 11.2274 2.10448 11.4858 2.31195 11.6358C2.42346 11.7164 2.55393 11.7574 2.68549 11.7574C2.79893 11.7574 2.91145 11.7268 3.01244 11.6664L6.00006 9.88077L8.98659 11.6664C9.20513 11.7978 9.48062 11.7858 9.68762 11.6358C9.89518 11.4854 9.99214 11.2268 9.93565 10.9773L9.16366 7.5767L11.7817 5.28113C11.9742 5.11267 12.0477 4.84661 11.9687 4.60317Z"
+                                                            fill="#F9D442" />
+                                                    </g>
+                                                    <defs>
+                                                        <clipPath id="clip0_114_9488">
+                                                            <rect width="12" height="12" fill="white" />
+                                                        </clipPath>
+                                                    </defs>
+                                                </svg>
+                                            </div>
+                                            <div class="stars__star stars__star">
+                                                <svg width="12" height="12" viewBox="0 0 12 12" fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <g id="icons" clip-path="url(#clip0_114_9488)">
+                                                        <path id="Vector"
+                                                            d="M11.9687 4.60317C11.8902 4.36018 11.6746 4.1876 11.4197 4.16462L7.95614 3.85013L6.58656 0.644511C6.48558 0.40958 6.25559 0.257507 6.00006 0.257507C5.74453 0.257507 5.51454 0.40958 5.41356 0.64506L4.04399 3.85013L0.579908 4.16462C0.325385 4.18815 0.110414 4.36018 0.0314019 4.60317C-0.0476102 4.84616 0.0253592 5.11267 0.2179 5.28068L2.83592 7.5767L2.06392 10.9773C2.00744 11.2274 2.10448 11.4858 2.31195 11.6358C2.42346 11.7164 2.55393 11.7574 2.68549 11.7574C2.79893 11.7574 2.91145 11.7268 3.01244 11.6664L6.00006 9.88077L8.98659 11.6664C9.20513 11.7978 9.48062 11.7858 9.68762 11.6358C9.89518 11.4854 9.99214 11.2268 9.93565 10.9773L9.16366 7.5767L11.7817 5.28113C11.9742 5.11267 12.0477 4.84661 11.9687 4.60317Z"
+                                                            fill="#F9D442" />
+                                                    </g>
+                                                    <defs>
+                                                        <clipPath id="clip0_114_9488">
+                                                            <rect width="12" height="12" fill="white" />
+                                                        </clipPath>
+                                                    </defs>
+                                                </svg>
+                                            </div>
+                                        </div>
+                                        <div class="reviews-top-body-item__line">
+                                            <span style="width: 100%;">
+  
+                                            </span>
+                                        </div>
+                                        <p class="reviews-top-body-item__procents">
+                                            100%
+                                        </p>
+                                    </div>
+                                    <div class="reviews-top-body__item reviews-top-body-item">
+                                        <div class="reviews-top-body-item__stars stars">
+                                            <div class="stars__star stars-star">
+                                                <svg width="12" height="12" viewBox="0 0 12 12" fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <g id="icons" clip-path="url(#clip0_114_9488)">
+                                                        <path id="Vector"
+                                                            d="M11.9687 4.60317C11.8902 4.36018 11.6746 4.1876 11.4197 4.16462L7.95614 3.85013L6.58656 0.644511C6.48558 0.40958 6.25559 0.257507 6.00006 0.257507C5.74453 0.257507 5.51454 0.40958 5.41356 0.64506L4.04399 3.85013L0.579908 4.16462C0.325385 4.18815 0.110414 4.36018 0.0314019 4.60317C-0.0476102 4.84616 0.0253592 5.11267 0.2179 5.28068L2.83592 7.5767L2.06392 10.9773C2.00744 11.2274 2.10448 11.4858 2.31195 11.6358C2.42346 11.7164 2.55393 11.7574 2.68549 11.7574C2.79893 11.7574 2.91145 11.7268 3.01244 11.6664L6.00006 9.88077L8.98659 11.6664C9.20513 11.7978 9.48062 11.7858 9.68762 11.6358C9.89518 11.4854 9.99214 11.2268 9.93565 10.9773L9.16366 7.5767L11.7817 5.28113C11.9742 5.11267 12.0477 4.84661 11.9687 4.60317Z"
+                                                            fill="#F9D442" />
+                                                    </g>
+                                                    <defs>
+                                                        <clipPath id="clip0_114_9488">
+                                                            <rect width="12" height="12" fill="white" />
+                                                        </clipPath>
+                                                    </defs>
+                                                </svg>
+                                            </div>
+                                            <div class="stars__star stars-star">
+                                                <svg width="12" height="12" viewBox="0 0 12 12" fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <g id="icons" clip-path="url(#clip0_114_9488)">
+                                                        <path id="Vector"
+                                                            d="M11.9687 4.60317C11.8902 4.36018 11.6746 4.1876 11.4197 4.16462L7.95614 3.85013L6.58656 0.644511C6.48558 0.40958 6.25559 0.257507 6.00006 0.257507C5.74453 0.257507 5.51454 0.40958 5.41356 0.64506L4.04399 3.85013L0.579908 4.16462C0.325385 4.18815 0.110414 4.36018 0.0314019 4.60317C-0.0476102 4.84616 0.0253592 5.11267 0.2179 5.28068L2.83592 7.5767L2.06392 10.9773C2.00744 11.2274 2.10448 11.4858 2.31195 11.6358C2.42346 11.7164 2.55393 11.7574 2.68549 11.7574C2.79893 11.7574 2.91145 11.7268 3.01244 11.6664L6.00006 9.88077L8.98659 11.6664C9.20513 11.7978 9.48062 11.7858 9.68762 11.6358C9.89518 11.4854 9.99214 11.2268 9.93565 10.9773L9.16366 7.5767L11.7817 5.28113C11.9742 5.11267 12.0477 4.84661 11.9687 4.60317Z"
+                                                            fill="#F9D442" />
+                                                    </g>
+                                                    <defs>
+                                                        <clipPath id="clip0_114_9488">
+                                                            <rect width="12" height="12" fill="white" />
+                                                        </clipPath>
+                                                    </defs>
+                                                </svg>
+                                            </div>
+                                            <div class="stars__star stars-star">
+                                                <svg width="12" height="12" viewBox="0 0 12 12" fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <g id="icons" clip-path="url(#clip0_114_9488)">
+                                                        <path id="Vector"
+                                                            d="M11.9687 4.60317C11.8902 4.36018 11.6746 4.1876 11.4197 4.16462L7.95614 3.85013L6.58656 0.644511C6.48558 0.40958 6.25559 0.257507 6.00006 0.257507C5.74453 0.257507 5.51454 0.40958 5.41356 0.64506L4.04399 3.85013L0.579908 4.16462C0.325385 4.18815 0.110414 4.36018 0.0314019 4.60317C-0.0476102 4.84616 0.0253592 5.11267 0.2179 5.28068L2.83592 7.5767L2.06392 10.9773C2.00744 11.2274 2.10448 11.4858 2.31195 11.6358C2.42346 11.7164 2.55393 11.7574 2.68549 11.7574C2.79893 11.7574 2.91145 11.7268 3.01244 11.6664L6.00006 9.88077L8.98659 11.6664C9.20513 11.7978 9.48062 11.7858 9.68762 11.6358C9.89518 11.4854 9.99214 11.2268 9.93565 10.9773L9.16366 7.5767L11.7817 5.28113C11.9742 5.11267 12.0477 4.84661 11.9687 4.60317Z"
+                                                            fill="#F9D442" />
+                                                    </g>
+                                                    <defs>
+                                                        <clipPath id="clip0_114_9488">
+                                                            <rect width="12" height="12" fill="white" />
+                                                        </clipPath>
+                                                    </defs>
+                                                </svg>
+                                            </div>
+                                            <div class="stars__star stars-star">
+                                                <svg width="12" height="12" viewBox="0 0 12 12" fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <g id="icons" clip-path="url(#clip0_114_9488)">
+                                                        <path id="Vector"
+                                                            d="M11.9687 4.60317C11.8902 4.36018 11.6746 4.1876 11.4197 4.16462L7.95614 3.85013L6.58656 0.644511C6.48558 0.40958 6.25559 0.257507 6.00006 0.257507C5.74453 0.257507 5.51454 0.40958 5.41356 0.64506L4.04399 3.85013L0.579908 4.16462C0.325385 4.18815 0.110414 4.36018 0.0314019 4.60317C-0.0476102 4.84616 0.0253592 5.11267 0.2179 5.28068L2.83592 7.5767L2.06392 10.9773C2.00744 11.2274 2.10448 11.4858 2.31195 11.6358C2.42346 11.7164 2.55393 11.7574 2.68549 11.7574C2.79893 11.7574 2.91145 11.7268 3.01244 11.6664L6.00006 9.88077L8.98659 11.6664C9.20513 11.7978 9.48062 11.7858 9.68762 11.6358C9.89518 11.4854 9.99214 11.2268 9.93565 10.9773L9.16366 7.5767L11.7817 5.28113C11.9742 5.11267 12.0477 4.84661 11.9687 4.60317Z"
+                                                            fill="#F9D442" />
+                                                    </g>
+                                                    <defs>
+                                                        <clipPath id="clip0_114_9488">
+                                                            <rect width="12" height="12" fill="white" />
+                                                        </clipPath>
+                                                    </defs>
+                                                </svg>
+                                            </div>
+                                            <div class="stars__star stars-star stars-star--disabled">
+                                                <svg width="12" height="12" viewBox="0 0 12 12" fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <g id="icons" clip-path="url(#clip0_114_9488)">
+                                                        <path id="Vector"
+                                                            d="M11.9687 4.60317C11.8902 4.36018 11.6746 4.1876 11.4197 4.16462L7.95614 3.85013L6.58656 0.644511C6.48558 0.40958 6.25559 0.257507 6.00006 0.257507C5.74453 0.257507 5.51454 0.40958 5.41356 0.64506L4.04399 3.85013L0.579908 4.16462C0.325385 4.18815 0.110414 4.36018 0.0314019 4.60317C-0.0476102 4.84616 0.0253592 5.11267 0.2179 5.28068L2.83592 7.5767L2.06392 10.9773C2.00744 11.2274 2.10448 11.4858 2.31195 11.6358C2.42346 11.7164 2.55393 11.7574 2.68549 11.7574C2.79893 11.7574 2.91145 11.7268 3.01244 11.6664L6.00006 9.88077L8.98659 11.6664C9.20513 11.7978 9.48062 11.7858 9.68762 11.6358C9.89518 11.4854 9.99214 11.2268 9.93565 10.9773L9.16366 7.5767L11.7817 5.28113C11.9742 5.11267 12.0477 4.84661 11.9687 4.60317Z"
+                                                            fill="#F9D442" />
+                                                    </g>
+                                                    <defs>
+                                                        <clipPath id="clip0_114_9488">
+                                                            <rect width="12" height="12" fill="white" />
+                                                        </clipPath>
+                                                    </defs>
+                                                </svg>
+                                            </div>
+                                        </div>
+                                        <div class="reviews-top-body-item__line">
+                                            <span style="width: 25%;">
+  
+                                            </span>
+                                        </div>
+                                        <p class="reviews-top-body-item__procents">
+                                            25%
+                                        </p>
+                                    </div>
+                                    <div class="reviews-top-body__item reviews-top-body-item">
+                                        <div class="reviews-top-body-item__stars stars">
+                                            <div class="stars__star stars-star">
+                                                <svg width="12" height="12" viewBox="0 0 12 12" fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <g id="icons" clip-path="url(#clip0_114_9488)">
+                                                        <path id="Vector"
+                                                            d="M11.9687 4.60317C11.8902 4.36018 11.6746 4.1876 11.4197 4.16462L7.95614 3.85013L6.58656 0.644511C6.48558 0.40958 6.25559 0.257507 6.00006 0.257507C5.74453 0.257507 5.51454 0.40958 5.41356 0.64506L4.04399 3.85013L0.579908 4.16462C0.325385 4.18815 0.110414 4.36018 0.0314019 4.60317C-0.0476102 4.84616 0.0253592 5.11267 0.2179 5.28068L2.83592 7.5767L2.06392 10.9773C2.00744 11.2274 2.10448 11.4858 2.31195 11.6358C2.42346 11.7164 2.55393 11.7574 2.68549 11.7574C2.79893 11.7574 2.91145 11.7268 3.01244 11.6664L6.00006 9.88077L8.98659 11.6664C9.20513 11.7978 9.48062 11.7858 9.68762 11.6358C9.89518 11.4854 9.99214 11.2268 9.93565 10.9773L9.16366 7.5767L11.7817 5.28113C11.9742 5.11267 12.0477 4.84661 11.9687 4.60317Z"
+                                                            fill="#F9D442" />
+                                                    </g>
+                                                    <defs>
+                                                        <clipPath id="clip0_114_9488">
+                                                            <rect width="12" height="12" fill="white" />
+                                                        </clipPath>
+                                                    </defs>
+                                                </svg>
+                                            </div>
+                                            <div class="stars__star stars-star">
+                                                <svg width="12" height="12" viewBox="0 0 12 12" fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <g id="icons" clip-path="url(#clip0_114_9488)">
+                                                        <path id="Vector"
+                                                            d="M11.9687 4.60317C11.8902 4.36018 11.6746 4.1876 11.4197 4.16462L7.95614 3.85013L6.58656 0.644511C6.48558 0.40958 6.25559 0.257507 6.00006 0.257507C5.74453 0.257507 5.51454 0.40958 5.41356 0.64506L4.04399 3.85013L0.579908 4.16462C0.325385 4.18815 0.110414 4.36018 0.0314019 4.60317C-0.0476102 4.84616 0.0253592 5.11267 0.2179 5.28068L2.83592 7.5767L2.06392 10.9773C2.00744 11.2274 2.10448 11.4858 2.31195 11.6358C2.42346 11.7164 2.55393 11.7574 2.68549 11.7574C2.79893 11.7574 2.91145 11.7268 3.01244 11.6664L6.00006 9.88077L8.98659 11.6664C9.20513 11.7978 9.48062 11.7858 9.68762 11.6358C9.89518 11.4854 9.99214 11.2268 9.93565 10.9773L9.16366 7.5767L11.7817 5.28113C11.9742 5.11267 12.0477 4.84661 11.9687 4.60317Z"
+                                                            fill="#F9D442" />
+                                                    </g>
+                                                    <defs>
+                                                        <clipPath id="clip0_114_9488">
+                                                            <rect width="12" height="12" fill="white" />
+                                                        </clipPath>
+                                                    </defs>
+                                                </svg>
+                                            </div>
+                                            <div class="stars__star stars-star">
+                                                <svg width="12" height="12" viewBox="0 0 12 12" fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <g id="icons" clip-path="url(#clip0_114_9488)">
+                                                        <path id="Vector"
+                                                            d="M11.9687 4.60317C11.8902 4.36018 11.6746 4.1876 11.4197 4.16462L7.95614 3.85013L6.58656 0.644511C6.48558 0.40958 6.25559 0.257507 6.00006 0.257507C5.74453 0.257507 5.51454 0.40958 5.41356 0.64506L4.04399 3.85013L0.579908 4.16462C0.325385 4.18815 0.110414 4.36018 0.0314019 4.60317C-0.0476102 4.84616 0.0253592 5.11267 0.2179 5.28068L2.83592 7.5767L2.06392 10.9773C2.00744 11.2274 2.10448 11.4858 2.31195 11.6358C2.42346 11.7164 2.55393 11.7574 2.68549 11.7574C2.79893 11.7574 2.91145 11.7268 3.01244 11.6664L6.00006 9.88077L8.98659 11.6664C9.20513 11.7978 9.48062 11.7858 9.68762 11.6358C9.89518 11.4854 9.99214 11.2268 9.93565 10.9773L9.16366 7.5767L11.7817 5.28113C11.9742 5.11267 12.0477 4.84661 11.9687 4.60317Z"
+                                                            fill="#F9D442" />
+                                                    </g>
+                                                    <defs>
+                                                        <clipPath id="clip0_114_9488">
+                                                            <rect width="12" height="12" fill="white" />
+                                                        </clipPath>
+                                                    </defs>
+                                                </svg>
+                                            </div>
+                                            <div class="stars__star stars-star stars-star--disabled">
+                                                <svg width="12" height="12" viewBox="0 0 12 12" fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <g id="icons" clip-path="url(#clip0_114_9488)">
+                                                        <path id="Vector"
+                                                            d="M11.9687 4.60317C11.8902 4.36018 11.6746 4.1876 11.4197 4.16462L7.95614 3.85013L6.58656 0.644511C6.48558 0.40958 6.25559 0.257507 6.00006 0.257507C5.74453 0.257507 5.51454 0.40958 5.41356 0.64506L4.04399 3.85013L0.579908 4.16462C0.325385 4.18815 0.110414 4.36018 0.0314019 4.60317C-0.0476102 4.84616 0.0253592 5.11267 0.2179 5.28068L2.83592 7.5767L2.06392 10.9773C2.00744 11.2274 2.10448 11.4858 2.31195 11.6358C2.42346 11.7164 2.55393 11.7574 2.68549 11.7574C2.79893 11.7574 2.91145 11.7268 3.01244 11.6664L6.00006 9.88077L8.98659 11.6664C9.20513 11.7978 9.48062 11.7858 9.68762 11.6358C9.89518 11.4854 9.99214 11.2268 9.93565 10.9773L9.16366 7.5767L11.7817 5.28113C11.9742 5.11267 12.0477 4.84661 11.9687 4.60317Z"
+                                                            fill="#F9D442" />
+                                                    </g>
+                                                    <defs>
+                                                        <clipPath id="clip0_114_9488">
+                                                            <rect width="12" height="12" fill="white" />
+                                                        </clipPath>
+                                                    </defs>
+                                                </svg>
+                                            </div>
+                                            <div class="stars__star stars-star stars-star--disabled">
+                                                <svg width="12" height="12" viewBox="0 0 12 12" fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <g id="icons" clip-path="url(#clip0_114_9488)">
+                                                        <path id="Vector"
+                                                            d="M11.9687 4.60317C11.8902 4.36018 11.6746 4.1876 11.4197 4.16462L7.95614 3.85013L6.58656 0.644511C6.48558 0.40958 6.25559 0.257507 6.00006 0.257507C5.74453 0.257507 5.51454 0.40958 5.41356 0.64506L4.04399 3.85013L0.579908 4.16462C0.325385 4.18815 0.110414 4.36018 0.0314019 4.60317C-0.0476102 4.84616 0.0253592 5.11267 0.2179 5.28068L2.83592 7.5767L2.06392 10.9773C2.00744 11.2274 2.10448 11.4858 2.31195 11.6358C2.42346 11.7164 2.55393 11.7574 2.68549 11.7574C2.79893 11.7574 2.91145 11.7268 3.01244 11.6664L6.00006 9.88077L8.98659 11.6664C9.20513 11.7978 9.48062 11.7858 9.68762 11.6358C9.89518 11.4854 9.99214 11.2268 9.93565 10.9773L9.16366 7.5767L11.7817 5.28113C11.9742 5.11267 12.0477 4.84661 11.9687 4.60317Z"
+                                                            fill="#F9D442" />
+                                                    </g>
+                                                    <defs>
+                                                        <clipPath id="clip0_114_9488">
+                                                            <rect width="12" height="12" fill="white" />
+                                                        </clipPath>
+                                                    </defs>
+                                                </svg>
+                                            </div>
+                                        </div>
+                                        <div class="reviews-top-body-item__line">
+                                            <span>
+  
+                                            </span>
+                                        </div>
+                                        <p class="reviews-top-body-item__procents">
+                                            0%
+                                        </p>
+                                    </div>
+                                    <div class="reviews-top-body__item reviews-top-body-item">
+                                        <div class="reviews-top-body-item__stars stars">
+                                            <div class="stars__star stars-star">
+                                                <svg width="12" height="12" viewBox="0 0 12 12" fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <g id="icons" clip-path="url(#clip0_114_9488)">
+                                                        <path id="Vector"
+                                                            d="M11.9687 4.60317C11.8902 4.36018 11.6746 4.1876 11.4197 4.16462L7.95614 3.85013L6.58656 0.644511C6.48558 0.40958 6.25559 0.257507 6.00006 0.257507C5.74453 0.257507 5.51454 0.40958 5.41356 0.64506L4.04399 3.85013L0.579908 4.16462C0.325385 4.18815 0.110414 4.36018 0.0314019 4.60317C-0.0476102 4.84616 0.0253592 5.11267 0.2179 5.28068L2.83592 7.5767L2.06392 10.9773C2.00744 11.2274 2.10448 11.4858 2.31195 11.6358C2.42346 11.7164 2.55393 11.7574 2.68549 11.7574C2.79893 11.7574 2.91145 11.7268 3.01244 11.6664L6.00006 9.88077L8.98659 11.6664C9.20513 11.7978 9.48062 11.7858 9.68762 11.6358C9.89518 11.4854 9.99214 11.2268 9.93565 10.9773L9.16366 7.5767L11.7817 5.28113C11.9742 5.11267 12.0477 4.84661 11.9687 4.60317Z"
+                                                            fill="#F9D442" />
+                                                    </g>
+                                                    <defs>
+                                                        <clipPath id="clip0_114_9488">
+                                                            <rect width="12" height="12" fill="white" />
+                                                        </clipPath>
+                                                    </defs>
+                                                </svg>
+                                            </div>
+                                            <div class="stars__star stars-star">
+                                                <svg width="12" height="12" viewBox="0 0 12 12" fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <g id="icons" clip-path="url(#clip0_114_9488)">
+                                                        <path id="Vector"
+                                                            d="M11.9687 4.60317C11.8902 4.36018 11.6746 4.1876 11.4197 4.16462L7.95614 3.85013L6.58656 0.644511C6.48558 0.40958 6.25559 0.257507 6.00006 0.257507C5.74453 0.257507 5.51454 0.40958 5.41356 0.64506L4.04399 3.85013L0.579908 4.16462C0.325385 4.18815 0.110414 4.36018 0.0314019 4.60317C-0.0476102 4.84616 0.0253592 5.11267 0.2179 5.28068L2.83592 7.5767L2.06392 10.9773C2.00744 11.2274 2.10448 11.4858 2.31195 11.6358C2.42346 11.7164 2.55393 11.7574 2.68549 11.7574C2.79893 11.7574 2.91145 11.7268 3.01244 11.6664L6.00006 9.88077L8.98659 11.6664C9.20513 11.7978 9.48062 11.7858 9.68762 11.6358C9.89518 11.4854 9.99214 11.2268 9.93565 10.9773L9.16366 7.5767L11.7817 5.28113C11.9742 5.11267 12.0477 4.84661 11.9687 4.60317Z"
+                                                            fill="#F9D442" />
+                                                    </g>
+                                                    <defs>
+                                                        <clipPath id="clip0_114_9488">
+                                                            <rect width="12" height="12" fill="white" />
+                                                        </clipPath>
+                                                    </defs>
+                                                </svg>
+                                            </div>
+                                            <div class="stars__star stars-star stars-star--disabled">
+                                                <svg width="12" height="12" viewBox="0 0 12 12" fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <g id="icons" clip-path="url(#clip0_114_9488)">
+                                                        <path id="Vector"
+                                                            d="M11.9687 4.60317C11.8902 4.36018 11.6746 4.1876 11.4197 4.16462L7.95614 3.85013L6.58656 0.644511C6.48558 0.40958 6.25559 0.257507 6.00006 0.257507C5.74453 0.257507 5.51454 0.40958 5.41356 0.64506L4.04399 3.85013L0.579908 4.16462C0.325385 4.18815 0.110414 4.36018 0.0314019 4.60317C-0.0476102 4.84616 0.0253592 5.11267 0.2179 5.28068L2.83592 7.5767L2.06392 10.9773C2.00744 11.2274 2.10448 11.4858 2.31195 11.6358C2.42346 11.7164 2.55393 11.7574 2.68549 11.7574C2.79893 11.7574 2.91145 11.7268 3.01244 11.6664L6.00006 9.88077L8.98659 11.6664C9.20513 11.7978 9.48062 11.7858 9.68762 11.6358C9.89518 11.4854 9.99214 11.2268 9.93565 10.9773L9.16366 7.5767L11.7817 5.28113C11.9742 5.11267 12.0477 4.84661 11.9687 4.60317Z"
+                                                            fill="#F9D442" />
+                                                    </g>
+                                                    <defs>
+                                                        <clipPath id="clip0_114_9488">
+                                                            <rect width="12" height="12" fill="white" />
+                                                        </clipPath>
+                                                    </defs>
+                                                </svg>
+                                            </div>
+                                            <div class="stars__star stars-star stars-star--disabled">
+                                                <svg width="12" height="12" viewBox="0 0 12 12" fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <g id="icons" clip-path="url(#clip0_114_9488)">
+                                                        <path id="Vector"
+                                                            d="M11.9687 4.60317C11.8902 4.36018 11.6746 4.1876 11.4197 4.16462L7.95614 3.85013L6.58656 0.644511C6.48558 0.40958 6.25559 0.257507 6.00006 0.257507C5.74453 0.257507 5.51454 0.40958 5.41356 0.64506L4.04399 3.85013L0.579908 4.16462C0.325385 4.18815 0.110414 4.36018 0.0314019 4.60317C-0.0476102 4.84616 0.0253592 5.11267 0.2179 5.28068L2.83592 7.5767L2.06392 10.9773C2.00744 11.2274 2.10448 11.4858 2.31195 11.6358C2.42346 11.7164 2.55393 11.7574 2.68549 11.7574C2.79893 11.7574 2.91145 11.7268 3.01244 11.6664L6.00006 9.88077L8.98659 11.6664C9.20513 11.7978 9.48062 11.7858 9.68762 11.6358C9.89518 11.4854 9.99214 11.2268 9.93565 10.9773L9.16366 7.5767L11.7817 5.28113C11.9742 5.11267 12.0477 4.84661 11.9687 4.60317Z"
+                                                            fill="#F9D442" />
+                                                    </g>
+                                                    <defs>
+                                                        <clipPath id="clip0_114_9488">
+                                                            <rect width="12" height="12" fill="white" />
+                                                        </clipPath>
+                                                    </defs>
+                                                </svg>
+                                            </div>
+                                            <div class="stars__star stars-star stars-star--disabled">
+                                                <svg width="12" height="12" viewBox="0 0 12 12" fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <g id="icons" clip-path="url(#clip0_114_9488)">
+                                                        <path id="Vector"
+                                                            d="M11.9687 4.60317C11.8902 4.36018 11.6746 4.1876 11.4197 4.16462L7.95614 3.85013L6.58656 0.644511C6.48558 0.40958 6.25559 0.257507 6.00006 0.257507C5.74453 0.257507 5.51454 0.40958 5.41356 0.64506L4.04399 3.85013L0.579908 4.16462C0.325385 4.18815 0.110414 4.36018 0.0314019 4.60317C-0.0476102 4.84616 0.0253592 5.11267 0.2179 5.28068L2.83592 7.5767L2.06392 10.9773C2.00744 11.2274 2.10448 11.4858 2.31195 11.6358C2.42346 11.7164 2.55393 11.7574 2.68549 11.7574C2.79893 11.7574 2.91145 11.7268 3.01244 11.6664L6.00006 9.88077L8.98659 11.6664C9.20513 11.7978 9.48062 11.7858 9.68762 11.6358C9.89518 11.4854 9.99214 11.2268 9.93565 10.9773L9.16366 7.5767L11.7817 5.28113C11.9742 5.11267 12.0477 4.84661 11.9687 4.60317Z"
+                                                            fill="#F9D442" />
+                                                    </g>
+                                                    <defs>
+                                                        <clipPath id="clip0_114_9488">
+                                                            <rect width="12" height="12" fill="white" />
+                                                        </clipPath>
+                                                    </defs>
+                                                </svg>
+                                            </div>
+                                        </div>
+                                        <div class="reviews-top-body-item__line">
+                                            <span>
+  
+                                            </span>
+                                        </div>
+                                        <p class="reviews-top-body-item__procents">
+                                            0%
+                                        </p>
+                                    </div>
+                                    <div class="reviews-top-body__item reviews-top-body-item">
+                                        <div class="reviews-top-body-item__stars stars">
+                                            <div class="stars__star stars-star">
+                                                <svg width="12" height="12" viewBox="0 0 12 12" fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <g id="icons" clip-path="url(#clip0_114_9488)">
+                                                        <path id="Vector"
+                                                            d="M11.9687 4.60317C11.8902 4.36018 11.6746 4.1876 11.4197 4.16462L7.95614 3.85013L6.58656 0.644511C6.48558 0.40958 6.25559 0.257507 6.00006 0.257507C5.74453 0.257507 5.51454 0.40958 5.41356 0.64506L4.04399 3.85013L0.579908 4.16462C0.325385 4.18815 0.110414 4.36018 0.0314019 4.60317C-0.0476102 4.84616 0.0253592 5.11267 0.2179 5.28068L2.83592 7.5767L2.06392 10.9773C2.00744 11.2274 2.10448 11.4858 2.31195 11.6358C2.42346 11.7164 2.55393 11.7574 2.68549 11.7574C2.79893 11.7574 2.91145 11.7268 3.01244 11.6664L6.00006 9.88077L8.98659 11.6664C9.20513 11.7978 9.48062 11.7858 9.68762 11.6358C9.89518 11.4854 9.99214 11.2268 9.93565 10.9773L9.16366 7.5767L11.7817 5.28113C11.9742 5.11267 12.0477 4.84661 11.9687 4.60317Z"
+                                                            fill="#F9D442" />
+                                                    </g>
+                                                    <defs>
+                                                        <clipPath id="clip0_114_9488">
+                                                            <rect width="12" height="12" fill="white" />
+                                                        </clipPath>
+                                                    </defs>
+                                                </svg>
+                                            </div>
+                                            <div class="stars__star stars-star stars-star--disabled">
+                                                <svg width="12" height="12" viewBox="0 0 12 12" fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <g id="icons" clip-path="url(#clip0_114_9488)">
+                                                        <path id="Vector"
+                                                            d="M11.9687 4.60317C11.8902 4.36018 11.6746 4.1876 11.4197 4.16462L7.95614 3.85013L6.58656 0.644511C6.48558 0.40958 6.25559 0.257507 6.00006 0.257507C5.74453 0.257507 5.51454 0.40958 5.41356 0.64506L4.04399 3.85013L0.579908 4.16462C0.325385 4.18815 0.110414 4.36018 0.0314019 4.60317C-0.0476102 4.84616 0.0253592 5.11267 0.2179 5.28068L2.83592 7.5767L2.06392 10.9773C2.00744 11.2274 2.10448 11.4858 2.31195 11.6358C2.42346 11.7164 2.55393 11.7574 2.68549 11.7574C2.79893 11.7574 2.91145 11.7268 3.01244 11.6664L6.00006 9.88077L8.98659 11.6664C9.20513 11.7978 9.48062 11.7858 9.68762 11.6358C9.89518 11.4854 9.99214 11.2268 9.93565 10.9773L9.16366 7.5767L11.7817 5.28113C11.9742 5.11267 12.0477 4.84661 11.9687 4.60317Z"
+                                                            fill="#F9D442" />
+                                                    </g>
+                                                    <defs>
+                                                        <clipPath id="clip0_114_9488">
+                                                            <rect width="12" height="12" fill="white" />
+                                                        </clipPath>
+                                                    </defs>
+                                                </svg>
+                                            </div>
+                                            <div class="stars__star stars-star stars-star--disabled">
+                                                <svg width="12" height="12" viewBox="0 0 12 12" fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <g id="icons" clip-path="url(#clip0_114_9488)">
+                                                        <path id="Vector"
+                                                            d="M11.9687 4.60317C11.8902 4.36018 11.6746 4.1876 11.4197 4.16462L7.95614 3.85013L6.58656 0.644511C6.48558 0.40958 6.25559 0.257507 6.00006 0.257507C5.74453 0.257507 5.51454 0.40958 5.41356 0.64506L4.04399 3.85013L0.579908 4.16462C0.325385 4.18815 0.110414 4.36018 0.0314019 4.60317C-0.0476102 4.84616 0.0253592 5.11267 0.2179 5.28068L2.83592 7.5767L2.06392 10.9773C2.00744 11.2274 2.10448 11.4858 2.31195 11.6358C2.42346 11.7164 2.55393 11.7574 2.68549 11.7574C2.79893 11.7574 2.91145 11.7268 3.01244 11.6664L6.00006 9.88077L8.98659 11.6664C9.20513 11.7978 9.48062 11.7858 9.68762 11.6358C9.89518 11.4854 9.99214 11.2268 9.93565 10.9773L9.16366 7.5767L11.7817 5.28113C11.9742 5.11267 12.0477 4.84661 11.9687 4.60317Z"
+                                                            fill="#F9D442" />
+                                                    </g>
+                                                    <defs>
+                                                        <clipPath id="clip0_114_9488">
+                                                            <rect width="12" height="12" fill="white" />
+                                                        </clipPath>
+                                                    </defs>
+                                                </svg>
+                                            </div>
+                                            <div class="stars__star stars-star stars-star--disabled">
+                                                <svg width="12" height="12" viewBox="0 0 12 12" fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <g id="icons" clip-path="url(#clip0_114_9488)">
+                                                        <path id="Vector"
+                                                            d="M11.9687 4.60317C11.8902 4.36018 11.6746 4.1876 11.4197 4.16462L7.95614 3.85013L6.58656 0.644511C6.48558 0.40958 6.25559 0.257507 6.00006 0.257507C5.74453 0.257507 5.51454 0.40958 5.41356 0.64506L4.04399 3.85013L0.579908 4.16462C0.325385 4.18815 0.110414 4.36018 0.0314019 4.60317C-0.0476102 4.84616 0.0253592 5.11267 0.2179 5.28068L2.83592 7.5767L2.06392 10.9773C2.00744 11.2274 2.10448 11.4858 2.31195 11.6358C2.42346 11.7164 2.55393 11.7574 2.68549 11.7574C2.79893 11.7574 2.91145 11.7268 3.01244 11.6664L6.00006 9.88077L8.98659 11.6664C9.20513 11.7978 9.48062 11.7858 9.68762 11.6358C9.89518 11.4854 9.99214 11.2268 9.93565 10.9773L9.16366 7.5767L11.7817 5.28113C11.9742 5.11267 12.0477 4.84661 11.9687 4.60317Z"
+                                                            fill="#F9D442" />
+                                                    </g>
+                                                    <defs>
+                                                        <clipPath id="clip0_114_9488">
+                                                            <rect width="12" height="12" fill="white" />
+                                                        </clipPath>
+                                                    </defs>
+                                                </svg>
+                                            </div>
+                                            <div class="stars__star stars-star stars-star--disabled">
+                                                <svg width="12" height="12" viewBox="0 0 12 12" fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <g id="icons" clip-path="url(#clip0_114_9488)">
+                                                        <path id="Vector"
+                                                            d="M11.9687 4.60317C11.8902 4.36018 11.6746 4.1876 11.4197 4.16462L7.95614 3.85013L6.58656 0.644511C6.48558 0.40958 6.25559 0.257507 6.00006 0.257507C5.74453 0.257507 5.51454 0.40958 5.41356 0.64506L4.04399 3.85013L0.579908 4.16462C0.325385 4.18815 0.110414 4.36018 0.0314019 4.60317C-0.0476102 4.84616 0.0253592 5.11267 0.2179 5.28068L2.83592 7.5767L2.06392 10.9773C2.00744 11.2274 2.10448 11.4858 2.31195 11.6358C2.42346 11.7164 2.55393 11.7574 2.68549 11.7574C2.79893 11.7574 2.91145 11.7268 3.01244 11.6664L6.00006 9.88077L8.98659 11.6664C9.20513 11.7978 9.48062 11.7858 9.68762 11.6358C9.89518 11.4854 9.99214 11.2268 9.93565 10.9773L9.16366 7.5767L11.7817 5.28113C11.9742 5.11267 12.0477 4.84661 11.9687 4.60317Z"
+                                                            fill="#F9D442" />
+                                                    </g>
+                                                    <defs>
+                                                        <clipPath id="clip0_114_9488">
+                                                            <rect width="12" height="12" fill="white" />
+                                                        </clipPath>
+                                                    </defs>
+                                                </svg>
+                                            </div>
+                                        </div>
+                                        <div class="reviews-top-body-item__line">
+                                            <span>
+  
+                                            </span>
+                                        </div>
+                                        <p class="reviews-top-body-item__procents">
+                                            0%
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="reviews__inner">
+                                <div class="reviews__comment reviews-comment">
+                                    <div class="reviews-comment__img">
+                                        <img class="reviews-comment__img-image"
+                                            src="images/member-icon-14.png" alt="img">
+                                    </div>
+                                    <div class="reviews-comment__body reviews-comment-body">
+                                        <div class="reviews-comment-body__top reviews-comment-body-top">
+                                            <div class="reviews-comment-body-top__box">
+                                                <p class="reviews-comment-body-top__box-text">
+                                                    Floyd Frederick
+                                                </p>
+                                                <p class="reviews-comment-body-top__box-subtext">
+                                                    February 4, 2023
+                                                </p>
+                                            </div>
+                                            <div class="reviews-comment-body-top__stars stars">
+                                                <div class="stars__star stars-star">
+                                                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none"
+                                                        xmlns="http://www.w3.org/2000/svg">
+                                                        <g id="icons" clip-path="url(#clip0_114_9488)">
+                                                            <path id="Vector"
+                                                                d="M11.9687 4.60317C11.8902 4.36018 11.6746 4.1876 11.4197 4.16462L7.95614 3.85013L6.58656 0.644511C6.48558 0.40958 6.25559 0.257507 6.00006 0.257507C5.74453 0.257507 5.51454 0.40958 5.41356 0.64506L4.04399 3.85013L0.579908 4.16462C0.325385 4.18815 0.110414 4.36018 0.0314019 4.60317C-0.0476102 4.84616 0.0253592 5.11267 0.2179 5.28068L2.83592 7.5767L2.06392 10.9773C2.00744 11.2274 2.10448 11.4858 2.31195 11.6358C2.42346 11.7164 2.55393 11.7574 2.68549 11.7574C2.79893 11.7574 2.91145 11.7268 3.01244 11.6664L6.00006 9.88077L8.98659 11.6664C9.20513 11.7978 9.48062 11.7858 9.68762 11.6358C9.89518 11.4854 9.99214 11.2268 9.93565 10.9773L9.16366 7.5767L11.7817 5.28113C11.9742 5.11267 12.0477 4.84661 11.9687 4.60317Z"
+                                                                fill="#F9D442" />
+                                                        </g>
+                                                        <defs>
+                                                            <clipPath id="clip0_114_9488">
+                                                                <rect width="12" height="12" fill="white" />
+                                                            </clipPath>
+                                                        </defs>
+                                                    </svg>
+                                                </div>
+                                                <div class="stars__star stars-star">
+                                                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none"
+                                                        xmlns="http://www.w3.org/2000/svg">
+                                                        <g id="icons" clip-path="url(#clip0_114_9488)">
+                                                            <path id="Vector"
+                                                                d="M11.9687 4.60317C11.8902 4.36018 11.6746 4.1876 11.4197 4.16462L7.95614 3.85013L6.58656 0.644511C6.48558 0.40958 6.25559 0.257507 6.00006 0.257507C5.74453 0.257507 5.51454 0.40958 5.41356 0.64506L4.04399 3.85013L0.579908 4.16462C0.325385 4.18815 0.110414 4.36018 0.0314019 4.60317C-0.0476102 4.84616 0.0253592 5.11267 0.2179 5.28068L2.83592 7.5767L2.06392 10.9773C2.00744 11.2274 2.10448 11.4858 2.31195 11.6358C2.42346 11.7164 2.55393 11.7574 2.68549 11.7574C2.79893 11.7574 2.91145 11.7268 3.01244 11.6664L6.00006 9.88077L8.98659 11.6664C9.20513 11.7978 9.48062 11.7858 9.68762 11.6358C9.89518 11.4854 9.99214 11.2268 9.93565 10.9773L9.16366 7.5767L11.7817 5.28113C11.9742 5.11267 12.0477 4.84661 11.9687 4.60317Z"
+                                                                fill="#F9D442" />
+                                                        </g>
+                                                        <defs>
+                                                            <clipPath id="clip0_114_9488">
+                                                                <rect width="12" height="12" fill="white" />
+                                                            </clipPath>
+                                                        </defs>
+                                                    </svg>
+                                                </div>
+                                                <div class="stars__star stars-star">
+                                                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none"
+                                                        xmlns="http://www.w3.org/2000/svg">
+                                                        <g id="icons" clip-path="url(#clip0_114_9488)">
+                                                            <path id="Vector"
+                                                                d="M11.9687 4.60317C11.8902 4.36018 11.6746 4.1876 11.4197 4.16462L7.95614 3.85013L6.58656 0.644511C6.48558 0.40958 6.25559 0.257507 6.00006 0.257507C5.74453 0.257507 5.51454 0.40958 5.41356 0.64506L4.04399 3.85013L0.579908 4.16462C0.325385 4.18815 0.110414 4.36018 0.0314019 4.60317C-0.0476102 4.84616 0.0253592 5.11267 0.2179 5.28068L2.83592 7.5767L2.06392 10.9773C2.00744 11.2274 2.10448 11.4858 2.31195 11.6358C2.42346 11.7164 2.55393 11.7574 2.68549 11.7574C2.79893 11.7574 2.91145 11.7268 3.01244 11.6664L6.00006 9.88077L8.98659 11.6664C9.20513 11.7978 9.48062 11.7858 9.68762 11.6358C9.89518 11.4854 9.99214 11.2268 9.93565 10.9773L9.16366 7.5767L11.7817 5.28113C11.9742 5.11267 12.0477 4.84661 11.9687 4.60317Z"
+                                                                fill="#F9D442" />
+                                                        </g>
+                                                        <defs>
+                                                            <clipPath id="clip0_114_9488">
+                                                                <rect width="12" height="12" fill="white" />
+                                                            </clipPath>
+                                                        </defs>
+                                                    </svg>
+                                                </div>
+                                                <div class="stars__star stars-star">
+                                                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none"
+                                                        xmlns="http://www.w3.org/2000/svg">
+                                                        <g id="icons" clip-path="url(#clip0_114_9488)">
+                                                            <path id="Vector"
+                                                                d="M11.9687 4.60317C11.8902 4.36018 11.6746 4.1876 11.4197 4.16462L7.95614 3.85013L6.58656 0.644511C6.48558 0.40958 6.25559 0.257507 6.00006 0.257507C5.74453 0.257507 5.51454 0.40958 5.41356 0.64506L4.04399 3.85013L0.579908 4.16462C0.325385 4.18815 0.110414 4.36018 0.0314019 4.60317C-0.0476102 4.84616 0.0253592 5.11267 0.2179 5.28068L2.83592 7.5767L2.06392 10.9773C2.00744 11.2274 2.10448 11.4858 2.31195 11.6358C2.42346 11.7164 2.55393 11.7574 2.68549 11.7574C2.79893 11.7574 2.91145 11.7268 3.01244 11.6664L6.00006 9.88077L8.98659 11.6664C9.20513 11.7978 9.48062 11.7858 9.68762 11.6358C9.89518 11.4854 9.99214 11.2268 9.93565 10.9773L9.16366 7.5767L11.7817 5.28113C11.9742 5.11267 12.0477 4.84661 11.9687 4.60317Z"
+                                                                fill="#F9D442" />
+                                                        </g>
+                                                        <defs>
+                                                            <clipPath id="clip0_114_9488">
+                                                                <rect width="12" height="12" fill="white" />
+                                                            </clipPath>
+                                                        </defs>
+                                                    </svg>
+                                                </div>
+                                                <div class="stars__star stars-star">
+                                                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none"
+                                                        xmlns="http://www.w3.org/2000/svg">
+                                                        <g id="icons" clip-path="url(#clip0_114_9488)">
+                                                            <path id="Vector"
+                                                                d="M11.9687 4.60317C11.8902 4.36018 11.6746 4.1876 11.4197 4.16462L7.95614 3.85013L6.58656 0.644511C6.48558 0.40958 6.25559 0.257507 6.00006 0.257507C5.74453 0.257507 5.51454 0.40958 5.41356 0.64506L4.04399 3.85013L0.579908 4.16462C0.325385 4.18815 0.110414 4.36018 0.0314019 4.60317C-0.0476102 4.84616 0.0253592 5.11267 0.2179 5.28068L2.83592 7.5767L2.06392 10.9773C2.00744 11.2274 2.10448 11.4858 2.31195 11.6358C2.42346 11.7164 2.55393 11.7574 2.68549 11.7574C2.79893 11.7574 2.91145 11.7268 3.01244 11.6664L6.00006 9.88077L8.98659 11.6664C9.20513 11.7978 9.48062 11.7858 9.68762 11.6358C9.89518 11.4854 9.99214 11.2268 9.93565 10.9773L9.16366 7.5767L11.7817 5.28113C11.9742 5.11267 12.0477 4.84661 11.9687 4.60317Z"
+                                                                fill="#F9D442" />
+                                                        </g>
+                                                        <defs>
+                                                            <clipPath id="clip0_114_9488">
+                                                                <rect width="12" height="12" fill="white" />
+                                                            </clipPath>
+                                                        </defs>
+                                                    </svg>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <p class="reviews-comment-body__text">
+                                            If you are looking for a course that will really challenge you on
+                                            your management style, this is it. The instructor does a fantastic
+                                            job of explaining how to give feedback so that you can maintain the
+                                            dignity of the employee and have positive outcomes. I really enjoyed
+                                            this class, and it's made me more motivated to improve my feedback
+                                            skills.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="reviews__comment reviews-comment">
+                                    <div class="reviews-comment__img">
+                                        <img class="reviews-comment__img-image"
+                                            src="images/member-icon-12.png" alt="img">
+                                    </div>
+                                    <div class="reviews-comment__body reviews-comment-body">
+                                        <div class="reviews-comment-body__top reviews-comment-body-top">
+                                            <div class="reviews-comment-body-top__box">
+                                                <p class="reviews-comment-body-top__box-text">
+                                                    Susan Foley
+                                                </p>
+                                                <p class="reviews-comment-body-top__box-subtext">
+                                                    26 May 2022
+                                                </p>
+                                            </div>
+                                            <div class="reviews-comment-body-top__stars stars">
+                                                <div class="stars__star stars-star">
+                                                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none"
+                                                        xmlns="http://www.w3.org/2000/svg">
+                                                        <g id="icons" clip-path="url(#clip0_114_9488)">
+                                                            <path id="Vector"
+                                                                d="M11.9687 4.60317C11.8902 4.36018 11.6746 4.1876 11.4197 4.16462L7.95614 3.85013L6.58656 0.644511C6.48558 0.40958 6.25559 0.257507 6.00006 0.257507C5.74453 0.257507 5.51454 0.40958 5.41356 0.64506L4.04399 3.85013L0.579908 4.16462C0.325385 4.18815 0.110414 4.36018 0.0314019 4.60317C-0.0476102 4.84616 0.0253592 5.11267 0.2179 5.28068L2.83592 7.5767L2.06392 10.9773C2.00744 11.2274 2.10448 11.4858 2.31195 11.6358C2.42346 11.7164 2.55393 11.7574 2.68549 11.7574C2.79893 11.7574 2.91145 11.7268 3.01244 11.6664L6.00006 9.88077L8.98659 11.6664C9.20513 11.7978 9.48062 11.7858 9.68762 11.6358C9.89518 11.4854 9.99214 11.2268 9.93565 10.9773L9.16366 7.5767L11.7817 5.28113C11.9742 5.11267 12.0477 4.84661 11.9687 4.60317Z"
+                                                                fill="#F9D442" />
+                                                        </g>
+                                                        <defs>
+                                                            <clipPath id="clip0_114_9488">
+                                                                <rect width="12" height="12" fill="white" />
+                                                            </clipPath>
+                                                        </defs>
+                                                    </svg>
+                                                </div>
+                                                <div class="stars__star stars-star">
+                                                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none"
+                                                        xmlns="http://www.w3.org/2000/svg">
+                                                        <g id="icons" clip-path="url(#clip0_114_9488)">
+                                                            <path id="Vector"
+                                                                d="M11.9687 4.60317C11.8902 4.36018 11.6746 4.1876 11.4197 4.16462L7.95614 3.85013L6.58656 0.644511C6.48558 0.40958 6.25559 0.257507 6.00006 0.257507C5.74453 0.257507 5.51454 0.40958 5.41356 0.64506L4.04399 3.85013L0.579908 4.16462C0.325385 4.18815 0.110414 4.36018 0.0314019 4.60317C-0.0476102 4.84616 0.0253592 5.11267 0.2179 5.28068L2.83592 7.5767L2.06392 10.9773C2.00744 11.2274 2.10448 11.4858 2.31195 11.6358C2.42346 11.7164 2.55393 11.7574 2.68549 11.7574C2.79893 11.7574 2.91145 11.7268 3.01244 11.6664L6.00006 9.88077L8.98659 11.6664C9.20513 11.7978 9.48062 11.7858 9.68762 11.6358C9.89518 11.4854 9.99214 11.2268 9.93565 10.9773L9.16366 7.5767L11.7817 5.28113C11.9742 5.11267 12.0477 4.84661 11.9687 4.60317Z"
+                                                                fill="#F9D442" />
+                                                        </g>
+                                                        <defs>
+                                                            <clipPath id="clip0_114_9488">
+                                                                <rect width="12" height="12" fill="white" />
+                                                            </clipPath>
+                                                        </defs>
+                                                    </svg>
+                                                </div>
+                                                <div class="stars__star stars-star">
+                                                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none"
+                                                        xmlns="http://www.w3.org/2000/svg">
+                                                        <g id="icons" clip-path="url(#clip0_114_9488)">
+                                                            <path id="Vector"
+                                                                d="M11.9687 4.60317C11.8902 4.36018 11.6746 4.1876 11.4197 4.16462L7.95614 3.85013L6.58656 0.644511C6.48558 0.40958 6.25559 0.257507 6.00006 0.257507C5.74453 0.257507 5.51454 0.40958 5.41356 0.64506L4.04399 3.85013L0.579908 4.16462C0.325385 4.18815 0.110414 4.36018 0.0314019 4.60317C-0.0476102 4.84616 0.0253592 5.11267 0.2179 5.28068L2.83592 7.5767L2.06392 10.9773C2.00744 11.2274 2.10448 11.4858 2.31195 11.6358C2.42346 11.7164 2.55393 11.7574 2.68549 11.7574C2.79893 11.7574 2.91145 11.7268 3.01244 11.6664L6.00006 9.88077L8.98659 11.6664C9.20513 11.7978 9.48062 11.7858 9.68762 11.6358C9.89518 11.4854 9.99214 11.2268 9.93565 10.9773L9.16366 7.5767L11.7817 5.28113C11.9742 5.11267 12.0477 4.84661 11.9687 4.60317Z"
+                                                                fill="#F9D442" />
+                                                        </g>
+                                                        <defs>
+                                                            <clipPath id="clip0_114_9488">
+                                                                <rect width="12" height="12" fill="white" />
+                                                            </clipPath>
+                                                        </defs>
+                                                    </svg>
+                                                </div>
+                                                <div class="stars__star stars-star">
+                                                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none"
+                                                        xmlns="http://www.w3.org/2000/svg">
+                                                        <g id="icons" clip-path="url(#clip0_114_9488)">
+                                                            <path id="Vector"
+                                                                d="M11.9687 4.60317C11.8902 4.36018 11.6746 4.1876 11.4197 4.16462L7.95614 3.85013L6.58656 0.644511C6.48558 0.40958 6.25559 0.257507 6.00006 0.257507C5.74453 0.257507 5.51454 0.40958 5.41356 0.64506L4.04399 3.85013L0.579908 4.16462C0.325385 4.18815 0.110414 4.36018 0.0314019 4.60317C-0.0476102 4.84616 0.0253592 5.11267 0.2179 5.28068L2.83592 7.5767L2.06392 10.9773C2.00744 11.2274 2.10448 11.4858 2.31195 11.6358C2.42346 11.7164 2.55393 11.7574 2.68549 11.7574C2.79893 11.7574 2.91145 11.7268 3.01244 11.6664L6.00006 9.88077L8.98659 11.6664C9.20513 11.7978 9.48062 11.7858 9.68762 11.6358C9.89518 11.4854 9.99214 11.2268 9.93565 10.9773L9.16366 7.5767L11.7817 5.28113C11.9742 5.11267 12.0477 4.84661 11.9687 4.60317Z"
+                                                                fill="#F9D442" />
+                                                        </g>
+                                                        <defs>
+                                                            <clipPath id="clip0_114_9488">
+                                                                <rect width="12" height="12" fill="white" />
+                                                            </clipPath>
+                                                        </defs>
+                                                    </svg>
+                                                </div>
+                                                <div class="stars__star stars-star stars-star--disabled">
+                                                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none"
+                                                        xmlns="http://www.w3.org/2000/svg">
+                                                        <g id="icons" clip-path="url(#clip0_114_9488)">
+                                                            <path id="Vector"
+                                                                d="M11.9687 4.60317C11.8902 4.36018 11.6746 4.1876 11.4197 4.16462L7.95614 3.85013L6.58656 0.644511C6.48558 0.40958 6.25559 0.257507 6.00006 0.257507C5.74453 0.257507 5.51454 0.40958 5.41356 0.64506L4.04399 3.85013L0.579908 4.16462C0.325385 4.18815 0.110414 4.36018 0.0314019 4.60317C-0.0476102 4.84616 0.0253592 5.11267 0.2179 5.28068L2.83592 7.5767L2.06392 10.9773C2.00744 11.2274 2.10448 11.4858 2.31195 11.6358C2.42346 11.7164 2.55393 11.7574 2.68549 11.7574C2.79893 11.7574 2.91145 11.7268 3.01244 11.6664L6.00006 9.88077L8.98659 11.6664C9.20513 11.7978 9.48062 11.7858 9.68762 11.6358C9.89518 11.4854 9.99214 11.2268 9.93565 10.9773L9.16366 7.5767L11.7817 5.28113C11.9742 5.11267 12.0477 4.84661 11.9687 4.60317Z"
+                                                                fill="#F9D442" />
+                                                        </g>
+                                                        <defs>
+                                                            <clipPath id="clip0_114_9488">
+                                                                <rect width="12" height="12" fill="white" />
+                                                            </clipPath>
+                                                        </defs>
+                                                    </svg>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <p class="reviews-comment-body__text">
+                                            Great job!
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="reviews__comment reviews-comment">
+                                    <div class="reviews-comment__img">
+                                        <img class="reviews-comment__img-image"
+                                            src="images/member-icon-23.png" alt="img">
+                                    </div>
+                                    <div class="reviews-comment__body reviews-comment-body">
+                                        <div class="reviews-comment-body__top reviews-comment-body-top">
+                                            <div class="reviews-comment-body-top__box">
+                                                <p class="reviews-comment-body-top__box-text">
+                                                    Anthony Clark
+                                                </p>
+                                                <p class="reviews-comment-body-top__box-subtext">
+                                                    10 October 2021
+                                                </p>
+                                            </div>
+                                            <div class="reviews-comment-body-top__stars stars">
+                                                <div class="stars__star stars-star">
+                                                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none"
+                                                        xmlns="http://www.w3.org/2000/svg">
+                                                        <g id="icons" clip-path="url(#clip0_114_9488)">
+                                                            <path id="Vector"
+                                                                d="M11.9687 4.60317C11.8902 4.36018 11.6746 4.1876 11.4197 4.16462L7.95614 3.85013L6.58656 0.644511C6.48558 0.40958 6.25559 0.257507 6.00006 0.257507C5.74453 0.257507 5.51454 0.40958 5.41356 0.64506L4.04399 3.85013L0.579908 4.16462C0.325385 4.18815 0.110414 4.36018 0.0314019 4.60317C-0.0476102 4.84616 0.0253592 5.11267 0.2179 5.28068L2.83592 7.5767L2.06392 10.9773C2.00744 11.2274 2.10448 11.4858 2.31195 11.6358C2.42346 11.7164 2.55393 11.7574 2.68549 11.7574C2.79893 11.7574 2.91145 11.7268 3.01244 11.6664L6.00006 9.88077L8.98659 11.6664C9.20513 11.7978 9.48062 11.7858 9.68762 11.6358C9.89518 11.4854 9.99214 11.2268 9.93565 10.9773L9.16366 7.5767L11.7817 5.28113C11.9742 5.11267 12.0477 4.84661 11.9687 4.60317Z"
+                                                                fill="#F9D442" />
+                                                        </g>
+                                                        <defs>
+                                                            <clipPath id="clip0_114_9488">
+                                                                <rect width="12" height="12" fill="white" />
+                                                            </clipPath>
+                                                        </defs>
+                                                    </svg>
+                                                </div>
+                                                <div class="stars__star stars-star">
+                                                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none"
+                                                        xmlns="http://www.w3.org/2000/svg">
+                                                        <g id="icons" clip-path="url(#clip0_114_9488)">
+                                                            <path id="Vector"
+                                                                d="M11.9687 4.60317C11.8902 4.36018 11.6746 4.1876 11.4197 4.16462L7.95614 3.85013L6.58656 0.644511C6.48558 0.40958 6.25559 0.257507 6.00006 0.257507C5.74453 0.257507 5.51454 0.40958 5.41356 0.64506L4.04399 3.85013L0.579908 4.16462C0.325385 4.18815 0.110414 4.36018 0.0314019 4.60317C-0.0476102 4.84616 0.0253592 5.11267 0.2179 5.28068L2.83592 7.5767L2.06392 10.9773C2.00744 11.2274 2.10448 11.4858 2.31195 11.6358C2.42346 11.7164 2.55393 11.7574 2.68549 11.7574C2.79893 11.7574 2.91145 11.7268 3.01244 11.6664L6.00006 9.88077L8.98659 11.6664C9.20513 11.7978 9.48062 11.7858 9.68762 11.6358C9.89518 11.4854 9.99214 11.2268 9.93565 10.9773L9.16366 7.5767L11.7817 5.28113C11.9742 5.11267 12.0477 4.84661 11.9687 4.60317Z"
+                                                                fill="#F9D442" />
+                                                        </g>
+                                                        <defs>
+                                                            <clipPath id="clip0_114_9488">
+                                                                <rect width="12" height="12" fill="white" />
+                                                            </clipPath>
+                                                        </defs>
+                                                    </svg>
+                                                </div>
+                                                <div class="stars__star stars-star">
+                                                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none"
+                                                        xmlns="http://www.w3.org/2000/svg">
+                                                        <g id="icons" clip-path="url(#clip0_114_9488)">
+                                                            <path id="Vector"
+                                                                d="M11.9687 4.60317C11.8902 4.36018 11.6746 4.1876 11.4197 4.16462L7.95614 3.85013L6.58656 0.644511C6.48558 0.40958 6.25559 0.257507 6.00006 0.257507C5.74453 0.257507 5.51454 0.40958 5.41356 0.64506L4.04399 3.85013L0.579908 4.16462C0.325385 4.18815 0.110414 4.36018 0.0314019 4.60317C-0.0476102 4.84616 0.0253592 5.11267 0.2179 5.28068L2.83592 7.5767L2.06392 10.9773C2.00744 11.2274 2.10448 11.4858 2.31195 11.6358C2.42346 11.7164 2.55393 11.7574 2.68549 11.7574C2.79893 11.7574 2.91145 11.7268 3.01244 11.6664L6.00006 9.88077L8.98659 11.6664C9.20513 11.7978 9.48062 11.7858 9.68762 11.6358C9.89518 11.4854 9.99214 11.2268 9.93565 10.9773L9.16366 7.5767L11.7817 5.28113C11.9742 5.11267 12.0477 4.84661 11.9687 4.60317Z"
+                                                                fill="#F9D442" />
+                                                        </g>
+                                                        <defs>
+                                                            <clipPath id="clip0_114_9488">
+                                                                <rect width="12" height="12" fill="white" />
+                                                            </clipPath>
+                                                        </defs>
+                                                    </svg>
+                                                </div>
+                                                <div class="stars__star stars-star">
+                                                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none"
+                                                        xmlns="http://www.w3.org/2000/svg">
+                                                        <g id="icons" clip-path="url(#clip0_114_9488)">
+                                                            <path id="Vector"
+                                                                d="M11.9687 4.60317C11.8902 4.36018 11.6746 4.1876 11.4197 4.16462L7.95614 3.85013L6.58656 0.644511C6.48558 0.40958 6.25559 0.257507 6.00006 0.257507C5.74453 0.257507 5.51454 0.40958 5.41356 0.64506L4.04399 3.85013L0.579908 4.16462C0.325385 4.18815 0.110414 4.36018 0.0314019 4.60317C-0.0476102 4.84616 0.0253592 5.11267 0.2179 5.28068L2.83592 7.5767L2.06392 10.9773C2.00744 11.2274 2.10448 11.4858 2.31195 11.6358C2.42346 11.7164 2.55393 11.7574 2.68549 11.7574C2.79893 11.7574 2.91145 11.7268 3.01244 11.6664L6.00006 9.88077L8.98659 11.6664C9.20513 11.7978 9.48062 11.7858 9.68762 11.6358C9.89518 11.4854 9.99214 11.2268 9.93565 10.9773L9.16366 7.5767L11.7817 5.28113C11.9742 5.11267 12.0477 4.84661 11.9687 4.60317Z"
+                                                                fill="#F9D442" />
+                                                        </g>
+                                                        <defs>
+                                                            <clipPath id="clip0_114_9488">
+                                                                <rect width="12" height="12" fill="white" />
+                                                            </clipPath>
+                                                        </defs>
+                                                    </svg>
+                                                </div>
+                                                <div class="stars__star stars-star">
+                                                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none"
+                                                        xmlns="http://www.w3.org/2000/svg">
+                                                        <g id="icons" clip-path="url(#clip0_114_9488)">
+                                                            <path id="Vector"
+                                                                d="M11.9687 4.60317C11.8902 4.36018 11.6746 4.1876 11.4197 4.16462L7.95614 3.85013L6.58656 0.644511C6.48558 0.40958 6.25559 0.257507 6.00006 0.257507C5.74453 0.257507 5.51454 0.40958 5.41356 0.64506L4.04399 3.85013L0.579908 4.16462C0.325385 4.18815 0.110414 4.36018 0.0314019 4.60317C-0.0476102 4.84616 0.0253592 5.11267 0.2179 5.28068L2.83592 7.5767L2.06392 10.9773C2.00744 11.2274 2.10448 11.4858 2.31195 11.6358C2.42346 11.7164 2.55393 11.7574 2.68549 11.7574C2.79893 11.7574 2.91145 11.7268 3.01244 11.6664L6.00006 9.88077L8.98659 11.6664C9.20513 11.7978 9.48062 11.7858 9.68762 11.6358C9.89518 11.4854 9.99214 11.2268 9.93565 10.9773L9.16366 7.5767L11.7817 5.28113C11.9742 5.11267 12.0477 4.84661 11.9687 4.60317Z"
+                                                                fill="#F9D442" />
+                                                        </g>
+                                                        <defs>
+                                                            <clipPath id="clip0_114_9488">
+                                                                <rect width="12" height="12" fill="white" />
+                                                            </clipPath>
+                                                        </defs>
+                                                    </svg>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <p class="reviews-comment-body__text">
+                                            Very professional and prompt. Excellent communication and really
+                                            thinking about the objective of the illustrations.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="reviews__comment reviews-comment">
+                                    <div class="reviews-comment__img">
+                                        <img class="reviews-comment__img-image"
+                                            src="images/member-icon-26.png" alt="img">
+                                    </div>
+                                    <div class="reviews-comment__body reviews-comment-body">
+                                        <div class="reviews-comment-body__top reviews-comment-body-top">
+                                            <div class="reviews-comment-body-top__box">
+                                                <p class="reviews-comment-body-top__box-text">
+                                                    Philippa Bush
+                                                </p>
+                                                <p class="reviews-comment-body-top__box-subtext">
+                                                    7 June 2021
+                                                </p>
+                                            </div>
+                                            <div class="reviews-comment-body-top__stars stars">
+                                                <div class="stars__star stars-star">
+                                                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none"
+                                                        xmlns="http://www.w3.org/2000/svg">
+                                                        <g id="icons" clip-path="url(#clip0_114_9488)">
+                                                            <path id="Vector"
+                                                                d="M11.9687 4.60317C11.8902 4.36018 11.6746 4.1876 11.4197 4.16462L7.95614 3.85013L6.58656 0.644511C6.48558 0.40958 6.25559 0.257507 6.00006 0.257507C5.74453 0.257507 5.51454 0.40958 5.41356 0.64506L4.04399 3.85013L0.579908 4.16462C0.325385 4.18815 0.110414 4.36018 0.0314019 4.60317C-0.0476102 4.84616 0.0253592 5.11267 0.2179 5.28068L2.83592 7.5767L2.06392 10.9773C2.00744 11.2274 2.10448 11.4858 2.31195 11.6358C2.42346 11.7164 2.55393 11.7574 2.68549 11.7574C2.79893 11.7574 2.91145 11.7268 3.01244 11.6664L6.00006 9.88077L8.98659 11.6664C9.20513 11.7978 9.48062 11.7858 9.68762 11.6358C9.89518 11.4854 9.99214 11.2268 9.93565 10.9773L9.16366 7.5767L11.7817 5.28113C11.9742 5.11267 12.0477 4.84661 11.9687 4.60317Z"
+                                                                fill="#F9D442" />
+                                                        </g>
+                                                        <defs>
+                                                            <clipPath id="clip0_114_9488">
+                                                                <rect width="12" height="12" fill="white" />
+                                                            </clipPath>
+                                                        </defs>
+                                                    </svg>
+                                                </div>
+                                                <div class="stars__star stars-star">
+                                                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none"
+                                                        xmlns="http://www.w3.org/2000/svg">
+                                                        <g id="icons" clip-path="url(#clip0_114_9488)">
+                                                            <path id="Vector"
+                                                                d="M11.9687 4.60317C11.8902 4.36018 11.6746 4.1876 11.4197 4.16462L7.95614 3.85013L6.58656 0.644511C6.48558 0.40958 6.25559 0.257507 6.00006 0.257507C5.74453 0.257507 5.51454 0.40958 5.41356 0.64506L4.04399 3.85013L0.579908 4.16462C0.325385 4.18815 0.110414 4.36018 0.0314019 4.60317C-0.0476102 4.84616 0.0253592 5.11267 0.2179 5.28068L2.83592 7.5767L2.06392 10.9773C2.00744 11.2274 2.10448 11.4858 2.31195 11.6358C2.42346 11.7164 2.55393 11.7574 2.68549 11.7574C2.79893 11.7574 2.91145 11.7268 3.01244 11.6664L6.00006 9.88077L8.98659 11.6664C9.20513 11.7978 9.48062 11.7858 9.68762 11.6358C9.89518 11.4854 9.99214 11.2268 9.93565 10.9773L9.16366 7.5767L11.7817 5.28113C11.9742 5.11267 12.0477 4.84661 11.9687 4.60317Z"
+                                                                fill="#F9D442" />
+                                                        </g>
+                                                        <defs>
+                                                            <clipPath id="clip0_114_9488">
+                                                                <rect width="12" height="12" fill="white" />
+                                                            </clipPath>
+                                                        </defs>
+                                                    </svg>
+                                                </div>
+                                                <div class="stars__star stars-star">
+                                                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none"
+                                                        xmlns="http://www.w3.org/2000/svg">
+                                                        <g id="icons" clip-path="url(#clip0_114_9488)">
+                                                            <path id="Vector"
+                                                                d="M11.9687 4.60317C11.8902 4.36018 11.6746 4.1876 11.4197 4.16462L7.95614 3.85013L6.58656 0.644511C6.48558 0.40958 6.25559 0.257507 6.00006 0.257507C5.74453 0.257507 5.51454 0.40958 5.41356 0.64506L4.04399 3.85013L0.579908 4.16462C0.325385 4.18815 0.110414 4.36018 0.0314019 4.60317C-0.0476102 4.84616 0.0253592 5.11267 0.2179 5.28068L2.83592 7.5767L2.06392 10.9773C2.00744 11.2274 2.10448 11.4858 2.31195 11.6358C2.42346 11.7164 2.55393 11.7574 2.68549 11.7574C2.79893 11.7574 2.91145 11.7268 3.01244 11.6664L6.00006 9.88077L8.98659 11.6664C9.20513 11.7978 9.48062 11.7858 9.68762 11.6358C9.89518 11.4854 9.99214 11.2268 9.93565 10.9773L9.16366 7.5767L11.7817 5.28113C11.9742 5.11267 12.0477 4.84661 11.9687 4.60317Z"
+                                                                fill="#F9D442" />
+                                                        </g>
+                                                        <defs>
+                                                            <clipPath id="clip0_114_9488">
+                                                                <rect width="12" height="12" fill="white" />
+                                                            </clipPath>
+                                                        </defs>
+                                                    </svg>
+                                                </div>
+                                                <div class="stars__star stars-star stars-star--disabled">
+                                                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none"
+                                                        xmlns="http://www.w3.org/2000/svg">
+                                                        <g id="icons" clip-path="url(#clip0_114_9488)">
+                                                            <path id="Vector"
+                                                                d="M11.9687 4.60317C11.8902 4.36018 11.6746 4.1876 11.4197 4.16462L7.95614 3.85013L6.58656 0.644511C6.48558 0.40958 6.25559 0.257507 6.00006 0.257507C5.74453 0.257507 5.51454 0.40958 5.41356 0.64506L4.04399 3.85013L0.579908 4.16462C0.325385 4.18815 0.110414 4.36018 0.0314019 4.60317C-0.0476102 4.84616 0.0253592 5.11267 0.2179 5.28068L2.83592 7.5767L2.06392 10.9773C2.00744 11.2274 2.10448 11.4858 2.31195 11.6358C2.42346 11.7164 2.55393 11.7574 2.68549 11.7574C2.79893 11.7574 2.91145 11.7268 3.01244 11.6664L6.00006 9.88077L8.98659 11.6664C9.20513 11.7978 9.48062 11.7858 9.68762 11.6358C9.89518 11.4854 9.99214 11.2268 9.93565 10.9773L9.16366 7.5767L11.7817 5.28113C11.9742 5.11267 12.0477 4.84661 11.9687 4.60317Z"
+                                                                fill="#F9D442" />
+                                                        </g>
+                                                        <defs>
+                                                            <clipPath id="clip0_114_9488">
+                                                                <rect width="12" height="12" fill="white" />
+                                                            </clipPath>
+                                                        </defs>
+                                                    </svg>
+                                                </div>
+                                                <div class="stars__star stars-star stars-star--disabled">
+                                                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none"
+                                                        xmlns="http://www.w3.org/2000/svg">
+                                                        <g id="icons" clip-path="url(#clip0_114_9488)">
+                                                            <path id="Vector"
+                                                                d="M11.9687 4.60317C11.8902 4.36018 11.6746 4.1876 11.4197 4.16462L7.95614 3.85013L6.58656 0.644511C6.48558 0.40958 6.25559 0.257507 6.00006 0.257507C5.74453 0.257507 5.51454 0.40958 5.41356 0.64506L4.04399 3.85013L0.579908 4.16462C0.325385 4.18815 0.110414 4.36018 0.0314019 4.60317C-0.0476102 4.84616 0.0253592 5.11267 0.2179 5.28068L2.83592 7.5767L2.06392 10.9773C2.00744 11.2274 2.10448 11.4858 2.31195 11.6358C2.42346 11.7164 2.55393 11.7574 2.68549 11.7574C2.79893 11.7574 2.91145 11.7268 3.01244 11.6664L6.00006 9.88077L8.98659 11.6664C9.20513 11.7978 9.48062 11.7858 9.68762 11.6358C9.89518 11.4854 9.99214 11.2268 9.93565 10.9773L9.16366 7.5767L11.7817 5.28113C11.9742 5.11267 12.0477 4.84661 11.9687 4.60317Z"
+                                                                fill="#F9D442" />
+                                                        </g>
+                                                        <defs>
+                                                            <clipPath id="clip0_114_9488">
+                                                                <rect width="12" height="12" fill="white" />
+                                                            </clipPath>
+                                                        </defs>
+                                                    </svg>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <p class="reviews-comment-body__text">
+                                            Good work. Very speedy and clear communication. Will certainly come
+                                            back again!
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                        <section class="members-section__comment comment">
+                            <div class="comment__inner">
+                                <h2 class="comment__title">
+                                    Add a Review
+                                </h2>
+                                <form class="comment__form" action="#">
+                                    <div class="comment__stars comment-stars">
+                                        <p class="comment-stars__text">
+                                            Your rating for this listing
+                                        </p>
+                                        <div class="comment-stars__box star-rating">
+                                            <input class="star" type="radio" name="rating" id="star5"
+                                                value="5" />
+                                            <label class="star5" for="star5">
+                                                <svg width="45" height="45" viewBox="0 0 20 21" fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <path
+                                                        d="M8.7208 1.32445C9.12344 0.0305245 10.8766 0.0305227 11.2792 1.32444L12.7178 5.94756C12.8979 6.52622 13.4143 6.918 13.997 6.918H18.6524C19.9554 6.918 20.4971 8.65896 19.443 9.45865L15.6767 12.3159C15.2053 12.6735 15.008 13.3074 15.1881 13.8861L16.6267 18.5092C17.0293 19.8031 15.611 20.8791 14.5569 20.0794L10.7906 17.2222C10.3192 16.8645 9.68083 16.8645 9.20941 17.2222L5.44311 20.0794C4.389 20.8791 2.97069 19.8031 3.37333 18.5092L4.81193 13.8861C4.99199 13.3074 4.79473 12.6735 4.32332 12.3159L0.557018 9.45865C-0.497097 8.65896 0.0446451 6.918 1.3476 6.918H6.00301C6.58571 6.918 7.10214 6.52622 7.2822 5.94756L8.7208 1.32445Z"
+                                                        fill="#F9AE00"></path>
+                                                </svg>
+                                            </label>
+                                            <input class="star" type="radio" name="rating" id="star4"
+                                                value="4" />
+                                            <label class="star4" for="star4">
+                                                <svg width="45" height="45" viewBox="0 0 20 21" fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <path
+                                                        d="M8.7208 1.32445C9.12344 0.0305245 10.8766 0.0305227 11.2792 1.32444L12.7178 5.94756C12.8979 6.52622 13.4143 6.918 13.997 6.918H18.6524C19.9554 6.918 20.4971 8.65896 19.443 9.45865L15.6767 12.3159C15.2053 12.6735 15.008 13.3074 15.1881 13.8861L16.6267 18.5092C17.0293 19.8031 15.611 20.8791 14.5569 20.0794L10.7906 17.2222C10.3192 16.8645 9.68083 16.8645 9.20941 17.2222L5.44311 20.0794C4.389 20.8791 2.97069 19.8031 3.37333 18.5092L4.81193 13.8861C4.99199 13.3074 4.79473 12.6735 4.32332 12.3159L0.557018 9.45865C-0.497097 8.65896 0.0446451 6.918 1.3476 6.918H6.00301C6.58571 6.918 7.10214 6.52622 7.2822 5.94756L8.7208 1.32445Z"
+                                                        fill="#F9AE00"></path>
+                                                </svg>
+                                            </label>
+                                            <input class="star" type="radio" name="rating" id="star3"
+                                                value="3" />
+                                            <label class="star3" for="star3">
+                                                <svg width="45" height="45" viewBox="0 0 20 21" fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <path
+                                                        d="M8.7208 1.32445C9.12344 0.0305245 10.8766 0.0305227 11.2792 1.32444L12.7178 5.94756C12.8979 6.52622 13.4143 6.918 13.997 6.918H18.6524C19.9554 6.918 20.4971 8.65896 19.443 9.45865L15.6767 12.3159C15.2053 12.6735 15.008 13.3074 15.1881 13.8861L16.6267 18.5092C17.0293 19.8031 15.611 20.8791 14.5569 20.0794L10.7906 17.2222C10.3192 16.8645 9.68083 16.8645 9.20941 17.2222L5.44311 20.0794C4.389 20.8791 2.97069 19.8031 3.37333 18.5092L4.81193 13.8861C4.99199 13.3074 4.79473 12.6735 4.32332 12.3159L0.557018 9.45865C-0.497097 8.65896 0.0446451 6.918 1.3476 6.918H6.00301C6.58571 6.918 7.10214 6.52622 7.2822 5.94756L8.7208 1.32445Z"
+                                                        fill="#F9AE00"></path>
+                                                </svg>
+                                            </label>
+                                            <input class="star" type="radio" name="rating" id="star2"
+                                                value="2" />
+                                            <label class="star2" for="star2">
+                                                <svg width="45" height="45" viewBox="0 0 20 21" fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <path
+                                                        d="M8.7208 1.32445C9.12344 0.0305245 10.8766 0.0305227 11.2792 1.32444L12.7178 5.94756C12.8979 6.52622 13.4143 6.918 13.997 6.918H18.6524C19.9554 6.918 20.4971 8.65896 19.443 9.45865L15.6767 12.3159C15.2053 12.6735 15.008 13.3074 15.1881 13.8861L16.6267 18.5092C17.0293 19.8031 15.611 20.8791 14.5569 20.0794L10.7906 17.2222C10.3192 16.8645 9.68083 16.8645 9.20941 17.2222L5.44311 20.0794C4.389 20.8791 2.97069 19.8031 3.37333 18.5092L4.81193 13.8861C4.99199 13.3074 4.79473 12.6735 4.32332 12.3159L0.557018 9.45865C-0.497097 8.65896 0.0446451 6.918 1.3476 6.918H6.00301C6.58571 6.918 7.10214 6.52622 7.2822 5.94756L8.7208 1.32445Z"
+                                                        fill="#F9AE00"></path>
+                                                </svg>
+                                            </label>
+                                            <input class="star" type="radio" name="rating" id="star1"
+                                                value="1" />
+                                            <label class="star1" for="star1">
+                                                <svg width="45" height="45" viewBox="0 0 20 21" fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <path
+                                                        d="M8.7208 1.32445C9.12344 0.0305245 10.8766 0.0305227 11.2792 1.32444L12.7178 5.94756C12.8979 6.52622 13.4143 6.918 13.997 6.918H18.6524C19.9554 6.918 20.4971 8.65896 19.443 9.45865L15.6767 12.3159C15.2053 12.6735 15.008 13.3074 15.1881 13.8861L16.6267 18.5092C17.0293 19.8031 15.611 20.8791 14.5569 20.0794L10.7906 17.2222C10.3192 16.8645 9.68083 16.8645 9.20941 17.2222L5.44311 20.0794C4.389 20.8791 2.97069 19.8031 3.37333 18.5092L4.81193 13.8861C4.99199 13.3074 4.79473 12.6735 4.32332 12.3159L0.557018 9.45865C-0.497097 8.65896 0.0446451 6.918 1.3476 6.918H6.00301C6.58571 6.918 7.10214 6.52622 7.2822 5.94756L8.7208 1.32445Z"
+                                                        fill="#F9AE00"></path>
+                                                </svg>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <textarea class="comment__form-textarea" placeholder="Your Comment"
+                                        rows="3"></textarea>
+                                    <div class="comment__form-wrapper">
+                                        <input class="comment__form-input" type="text" placeholder="Your Name">
+                                        <input class="comment__form-input" type="text" placeholder="Your Email">
+                                    </div>
+                                    <label class="comment__form-checkbox container">
+                                        Save my name, email, and website in this browser for the next time I
+                                        comment.
+                                        <input type="checkbox" checked="checked">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                    <button class="comment__form-btn" type="button">
+                                        Submit Review
+                                    </button>
+                                </form>
+                            </div>
+                        </section>
+                    </div>
+                    <aside class="members-section__aside members-section-aside">
+                        <div class="members-section-aside__aside-cost-info aside-cost-info">
+                            <p class="aside-cost-info__price">
+                               {{all_groups.price}}
+                                <span>
+                                    per hour
+                                </span>
+                            </p>
+                            <ul class="aside-cost-info__list">
+                                <li class="aside-cost-info__list-item">
+                                    <p class="aside-cost-info__list-text">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <g id="icons">
+                                                <path id="Vector"
+                                                    d="M20 10C20 16 12 22 12 22C12 22 4 16 4 10C4 7.87827 4.84285 5.84344 6.34315 4.34315C7.84344 2.84285 9.87827 2 12 2C14.1217 2 16.1566 2.84285 17.6569 4.34315C19.1571 5.84344 20 7.87827 20 10Z"
+                                                    stroke="white" stroke-width="1.5" stroke-linecap="round"
+                                                    stroke-linejoin="round" />
+                                                <path id="Vector_2"
+                                                    d="M12 13C13.6569 13 15 11.6569 15 10C15 8.34315 13.6569 7 12 7C10.3431 7 9 8.34315 9 10C9 11.6569 10.3431 13 12 13Z"
+                                                    stroke="white" stroke-width="1.5" stroke-linecap="round"
+                                                    stroke-linejoin="round" />
+                                            </g>
+                                        </svg>
+                                        <span>
+                                            Location
+                                        </span>
+                                    </p>
+                                    <p class="aside-cost-info__list-text">
+                                       <a style="color:white;" href="https://www.suiet.in/">SUIET</a>
+                                    </p>
+                                </li>
+                                <li class="aside-cost-info__list-item">
+                                    <p class="aside-cost-info__list-text">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <g id="icons">
+                                                <path id="Vector"
+                                                    d="M16 18C16 16.9391 15.5786 15.9217 14.8284 15.1716C14.0783 14.4214 13.0609 14 12 14C10.9391 14 9.92172 14.4214 9.17157 15.1716C8.42143 15.9217 8 16.9391 8 18"
+                                                    stroke="white" stroke-width="1.5" stroke-linecap="round"
+                                                    stroke-linejoin="round" />
+                                                <path id="Vector_2"
+                                                    d="M12 14C13.6569 14 15 12.6569 15 11C15 9.34315 13.6569 8 12 8C10.3431 8 9 9.34315 9 11C9 12.6569 10.3431 14 12 14Z"
+                                                    stroke="white" stroke-width="1.5" stroke-linecap="round"
+                                                    stroke-linejoin="round" />
+                                                <path id="Vector_3"
+                                                    d="M19 4H5C3.89543 4 3 4.89543 3 6V20C3 21.1046 3.89543 22 5 22H19C20.1046 22 21 21.1046 21 20V6C21 4.89543 20.1046 4 19 4Z"
+                                                    stroke="white" stroke-width="1.5" stroke-linecap="round"
+                                                    stroke-linejoin="round" />
+                                                <path id="Vector_4" d="M8 2V4" stroke="white" stroke-width="1.5"
+                                                    stroke-linecap="round" stroke-linejoin="round" />
+                                                <path id="Vector_5" d="M16 2V4" stroke="white"
+                                                    stroke-width="1.5" stroke-linecap="round"
+                                                    stroke-linejoin="round" />
+                                            </g>
+                                        </svg>
+                                        <span>
+                                            Type
+                                        </span>
+                                    </p>
+                                    <p class="aside-cost-info__list-text">
+                                      Freelancers
+                                    </p>
+                                </li>
+                                <li class="aside-cost-info__list-item">
+                                    <p class="aside-cost-info__list-text">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <g id="icons">
+                                                <path id="Vector" d="M5 8L11 14" stroke="white"
+                                                    stroke-width="1.5" stroke-linecap="round"
+                                                    stroke-linejoin="round" />
+                                                <path id="Vector_2" d="M4 14L10 8L12 5" stroke="white"
+                                                    stroke-width="1.5" stroke-linecap="round"
+                                                    stroke-linejoin="round" />
+                                                <path id="Vector_3" d="M2 5H14" stroke="white"
+                                                    stroke-width="1.5" stroke-linecap="round"
+                                                    stroke-linejoin="round" />
+                                                <path id="Vector_4" d="M7 2H8" stroke="white" stroke-width="1.5"
+                                                    stroke-linecap="round" stroke-linejoin="round" />
+                                                <path id="Vector_5" d="M22 22L17 12L12 22" stroke="white"
+                                                    stroke-width="1.5" stroke-linecap="round"
+                                                    stroke-linejoin="round" />
+                                                <path id="Vector_6" d="M14 18H20" stroke="white"
+                                                    stroke-width="1.5" stroke-linecap="round"
+                                                    stroke-linejoin="round" />
+                                            </g>
+                                        </svg>
+                                        <span>
+                                            English Level
+                                        </span>
+                                    </p>
+                                    <p class="aside-cost-info__list-text">
+                                        Fluent
+                                    </p>
+                                </li>
+                                
+                                <li class="aside-cost-info__list-item">
+                                    <p class="aside-cost-info__list-text">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <g id="icons">
+                                                <path id="Vector"
+                                                    d="M20 21V13C20 12.4696 19.7893 11.9609 19.4142 11.5858C19.0391 11.2107 18.5304 11 18 11H6C5.46957 11 4.96086 11.2107 4.58579 11.5858C4.21071 11.9609 4 12.4696 4 13V21"
+                                                    stroke="white" stroke-width="1.5" stroke-linecap="round"
+                                                    stroke-linejoin="round" />
+                                                <path id="Vector_2"
+                                                    d="M4 16C4 16 4.5 15 6 15C7.5 15 8.5 17 10 17C11.5 17 12.5 15 14 15C15.5 15 16.5 17 18 17C19.5 17 20 16 20 16"
+                                                    stroke="white" stroke-width="1.5" stroke-linecap="round"
+                                                    stroke-linejoin="round" />
+                                                <path id="Vector_3" d="M2 21H22" stroke="white"
+                                                    stroke-width="1.5" stroke-linecap="round"
+                                                    stroke-linejoin="round" />
+                                                <path id="Vector_4" d="M7 8V10" stroke="white"
+                                                    stroke-width="1.5" stroke-linecap="round"
+                                                    stroke-linejoin="round" />
+                                                <path id="Vector_5" d="M12 8V10" stroke="white"
+                                                    stroke-width="1.5" stroke-linecap="round"
+                                                    stroke-linejoin="round" />
+                                                <path id="Vector_6" d="M17 8V10" stroke="white"
+                                                    stroke-width="1.5" stroke-linecap="round"
+                                                    stroke-linejoin="round" />
+                                                <path id="Vector_7" d="M7 4H7.01" stroke="white"
+                                                    stroke-width="1.5" stroke-linecap="round"
+                                                    stroke-linejoin="round" />
+                                                <path id="Vector_8" d="M12 4H12.01" stroke="white"
+                                                    stroke-width="1.5" stroke-linecap="round"
+                                                    stroke-linejoin="round" />
+                                                <path id="Vector_9" d="M17 4H17.01" stroke="white"
+                                                    stroke-width="1.5" stroke-linecap="round"
+                                                    stroke-linejoin="round" />
+                                            </g>
+                                        </svg>
+                                        <span>
+                                            Formed on
+                                        </span>
+                                    </p>
+                                    <p class="aside-cost-info__list-text">
+                                        {{all_groups.formed}}
+                                    </p>
+                                </li>
+                                <li class="aside-cost-info__list-item">
+                                    <p class="aside-cost-info__list-text">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <g id="icons">
+                                                <path id="Vector"
+                                                    d="M16 18C16 16.9391 15.5786 15.9217 14.8284 15.1716C14.0783 14.4214 13.0609 14 12 14C10.9391 14 9.92172 14.4214 9.17157 15.1716C8.42143 15.9217 8 16.9391 8 18"
+                                                    stroke="white" stroke-width="1.5" stroke-linecap="round"
+                                                    stroke-linejoin="round" />
+                                                <path id="Vector_2"
+                                                    d="M12 14C13.6569 14 15 12.6569 15 11C15 9.34315 13.6569 8 12 8C10.3431 8 9 9.34315 9 11C9 12.6569 10.3431 14 12 14Z"
+                                                    stroke="white" stroke-width="1.5" stroke-linecap="round"
+                                                    stroke-linejoin="round" />
+                                                <path id="Vector_3"
+                                                    d="M19 4H5C3.89543 4 3 4.89543 3 6V20C3 21.1046 3.89543 22 5 22H19C20.1046 22 21 21.1046 21 20V6C21 4.89543 20.1046 4 19 4Z"
+                                                    stroke="white" stroke-width="1.5" stroke-linecap="round"
+                                                    stroke-linejoin="round" />
+                                                <path id="Vector_4" d="M8 2V4" stroke="white" stroke-width="1.5"
+                                                    stroke-linecap="round" stroke-linejoin="round" />
+                                                <path id="Vector_5" d="M16 2V4" stroke="white"
+                                                    stroke-width="1.5" stroke-linecap="round"
+                                                    stroke-linejoin="round" />
+                                            </g>
+                                        </svg>
+                                        <span>
+                                            Team Lead
+                                        </span>
+                                    </p>
+                                    <p class="aside-cost-info__list-text">
+                                      <a style="color:white;" href="{% url "profile_page_output" all_groups.leader.slug %}">{{all_groups.leader.name}}</a>
+                                    </p>
+                                </li>
+                                <li class="aside-cost-info__list-item">
+                                    <p class="aside-cost-info__list-text">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <g id="icons">
+                                                <path id="Vector"
+                                                    d="M12 16C14.2091 16 16 14.2091 16 12C16 9.79086 14.2091 8 12 8C9.79086 8 8 9.79086 8 12C8 14.2091 9.79086 16 12 16Z"
+                                                    stroke="white" stroke-width="1.5" stroke-linecap="round"
+                                                    stroke-linejoin="round" />
+                                                <path id="Vector_2"
+                                                    d="M16 8.00001V13C16 13.7957 16.3161 14.5587 16.8787 15.1213C17.4413 15.6839 18.2044 16 19 16C19.7957 16 20.5587 15.6839 21.1213 15.1213C21.6839 14.5587 22 13.7957 22 13V12C22 9.74731 21.2394 7.56061 19.8414 5.79418C18.4434 4.02775 16.49 2.78508 14.2975 2.26752C12.1051 1.74996 9.80215 1.98782 7.76178 2.94256C5.72141 3.89731 4.06318 5.513 3.05574 7.52787C2.0483 9.54274 1.75069 11.8387 2.21111 14.0439C2.67154 16.249 3.86303 18.2341 5.59254 19.6775C7.32205 21.1209 9.48825 21.9381 11.7402 21.9966C13.9921 22.0552 16.1979 21.3516 18 20"
+                                                    stroke="white" stroke-width="1.5" stroke-linecap="round"
+                                                    stroke-linejoin="round" />
+                                            </g>
+                                        </svg>
+                                        <span>
+                                            Email
+                                        </span>
+                                    </p>
+                                    <p class="aside-cost-info__list-text">
+                                        <a href="mailto: {{all_groups.email}}">Webflow Community</a>
+                                    </p>
+                                </li>
+                                <li class="aside-cost-info__list-item">
+                                    <p class="aside-cost-info__list-text">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <g id="icons">
+                                                <path id="Vector"
+                                                    d="M22.0001 16.9201V19.9201C22.0012 20.1986 21.9441 20.4743 21.8326 20.7294C21.721 20.9846 21.5574 21.2137 21.3521 21.402C21.1469 21.5902 20.9046 21.7336 20.6408 21.8228C20.377 21.912 20.0974 21.9452 19.8201 21.9201C16.7429 21.5857 13.7871 20.5342 11.1901 18.8501C8.77388 17.3148 6.72539 15.2663 5.19006 12.8501C3.50003 10.2413 2.4483 7.27109 2.12006 4.1801C2.09507 3.90356 2.12793 3.62486 2.21656 3.36172C2.30518 3.09859 2.44763 2.85679 2.63482 2.65172C2.82202 2.44665 3.04986 2.28281 3.30385 2.17062C3.55783 2.05843 3.8324 2.00036 4.11006 2.0001H7.11006C7.59536 1.99532 8.06585 2.16718 8.43382 2.48363C8.80179 2.80008 9.04213 3.23954 9.11005 3.7201C9.23668 4.68016 9.47151 5.62282 9.81006 6.5301C9.9446 6.88802 9.97372 7.27701 9.89396 7.65098C9.81421 8.02494 9.62892 8.36821 9.36005 8.6401L8.09006 9.9101C9.51361 12.4136 11.5865 14.4865 14.0901 15.9101L15.3601 14.6401C15.6319 14.3712 15.9752 14.1859 16.3492 14.1062C16.7231 14.0264 17.1121 14.0556 17.4701 14.1901C18.3773 14.5286 19.32 14.7635 20.2801 14.8901C20.7658 14.9586 21.2095 15.2033 21.5266 15.5776C21.8437 15.9519 22.0122 16.4297 22.0001 16.9201Z"
+                                                    stroke="white" stroke-width="1.5" stroke-linecap="round"
+                                                    stroke-linejoin="round" />
+                                            </g>
+                                        </svg>
+                                        <span>
+                                            Phone Number
+                                        </span>
+                                    </p>
+                                    <p class="aside-cost-info__list-text">
+                                        +91 {{all_groups.phone}}
+                                    </p>
+                                </li>
+                            </ul>
+                            <a class="aside-cost-info__link" href="mailto: {{all_groups.email}}">
+                                Contact
+                            </a>
+                        </div>
+                        
+                        
+                        <div class="members-section-aside__aside-block aside-block aside-block--medium-squeres">
+                            <h3 class="aside-block__title">
+                                Recent Posts
+                            </h3>
+                            <div class="aside-block__item aside-block-item">
+                                <a class="aside-block-item__img" href="#">
+                                    <img class="aside-block-item__img-image" src="images/group-img-11.jpg"
+                                        alt="img">
+                                </a>
+                                <div class="aside-block-item__box aside-block-item-box">
+                                    <p class="aside-block-item-box__text">
+                                        <a href="#">
+                                            Tackle Your closest Spring cleaning
+                                        </a>
+                                    </p>
+                                    <p class="aside-block-item-box__subtext">
+                                        May 14, 2023
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="aside-block__item aside-block-item">
+                                <a class="aside-block-item__img" href="#">
+                                    <img class="aside-block-item__img-image" src="images/group-img-6.jpg"
+                                        alt="img">
+                                </a>
+                                <div class="aside-block-item__box aside-block-item-box">
+                                    <p class="aside-block-item-box__text">
+                                        <a href="#">
+                                            The Truth About Business Blogging
+                                        </a>
+                                    </p>
+                                    <p class="aside-block-item-box__subtext">
+                                        May 13, 2023
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="aside-block__item aside-block-item">
+                                <a class="aside-block-item__img" href="#">
+                                    <img class="aside-block-item__img-image" src="images/group-img-4.jpg"
+                                        alt="img">
+                                </a>
+                                <div class="aside-block-item__box aside-block-item-box">
+                                    <p class="aside-block-item-box__text">
+                                        <a href="#">
+                                            OMA completes renovation of Sotheby’s New York galleries
+                                        </a>
+                                    </p>
+                                    <p class="aside-block-item-box__subtext">
+                                        May 5, 2023
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="aside-block__item aside-block-item">
+                                <a class="aside-block-item__img" href="#">
+                                    <img class="aside-block-item__img-image" src="images/group-img-2.jpg"
+                                        alt="img">
+                                </a>
+                                <div class="aside-block-item__box aside-block-item-box">
+                                    <p class="aside-block-item-box__text">
+                                        <a href="#">
+                                            Visiting Amsterdam on a Budget
+                                        </a>
+                                    </p>
+                                    <p class="aside-block-item-box__subtext">
+                                        May 2, 2023
+                                    </p>
+                                </div>
+                            </div>
+                            <a class="aside-block__link" href="#">
+                                Show All
+                            </a>
+                        </div>
+                        <div class="members-section-aside__aside-block aside-block aside-block--grid">
+                            <h3 class="aside-block__title">
+                                Media
+                            </h3>
+                            <div class="aside-block__media aside-block-media">
+                                <a class="aside-block-media__link" href="#">
+                                    <img class="aside-block-media__link-img" src="images/new/ga1.jpg" alt="img">
+                                </a>
+                                <a class="aside-block-media__link" href="#">
+                                     <img class="aside-block-media__link-img" src="images/new/ga2.jpg" alt="img">
+                                </a>
+                                <a class="aside-block-media__link" href="#">
+                                   <img class="aside-block-media__link-img" src="images/new/ga3.jpg" alt="img">
+                                </a>
+                                <a class="aside-block-media__link" href="#">
+                                     <img class="aside-block-media__link-img" src="images/new/ga4.jpg" alt="img">
+                                </a>
+                                <a class="aside-block-media__link" href="#">
+                                     <img class="aside-block-media__link-img" src="images/new/ga5.jpg" alt="img">
+                                </a>
+                                <a class="aside-block-media__link" href="#">
+                                     <img class="aside-block-media__link-img" src="images/new/ga6.jpg" alt="img">
+                                </a>
+                                <a class="aside-block-media__link" href="#">
+                                    <img class="aside-block-media__link-img" src="images/new/ga7.jpg" alt="img">
+                                </a>
+                                <a class="aside-block-media__link" href="#">
+                                    <img class="aside-block-media__link-img" src="images/new/ga8.jpg" alt="img">
+                                </a>
+                                <a class="aside-block-media__link" href="#">
+                                    <img class="aside-block-media__link-img" src="images/new/ga4.jpg" alt="img">
+                                </a>
+                            </div>
+                            <a class="aside-block__link" href="#">
+                                Show All
+                            </a>
+                        </div>
+                    </aside>
+                </div>
+                
+                 <div class="group-profile__wrapper" id="3">
+
+                    <div class="members__inner">
+                        {% for group_member in group_member %}
+                        <div class="members__card card">
+                            <div class="card__inner">
+                                <p class="card__suptext">
+                                    {{group_member.user.designation}}
+                                </p>
+                                
+                                <h3 class="card__title">
+                                    {{group_member.user.name}}
+                                </h3>
+                                <a class="card__text" href="#">
+                                    {{group_member.user.user}}
+                                </a>
+                                <p class="card__subtext">
+                                    Joined {{group_member.user.joined}}
+                                </p>
+                                <div class="card__box card-box">
+                                    <div class="card-box__person-img card-person-img">
+                                        <img class="card-person-img__image" src="{{group_member.user.image.url}}" alt="img">
+                                        <span class="card-person-img__status">
+    
+                                        </span>
+                                    </div>
+                                    <a class="card-box__link" href="{% url "profile_page_output" group_member.user.slug %}">
+                                        Send Message
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+
+                 </div>
+
+                <div class="group-profile__wrapper" id="4">
+
+                </div>
+            </div>
+        </div>
+    </section>
+    {% endfor %}
+
+    {% endblock body %}

@@ -1,0 +1,55 @@
+{% extends "base/base.html" %}
+ {% load static %}
+    {% block body %}
+
+
+    <section class="main__error error">
+        <div class="container">
+            <div class="error__inner">
+                <h1 class="error__title">
+                    Register
+                </h1>
+                <p class="error__text">
+                    WebFlow Community
+                </p>
+                <br>
+                <br>
+                <form class="error__search " method="post">
+                    {% csrf_token %}
+                    <div>
+                        <input class="" type="text" name="fullname" placeholder="Fullname" required>
+                    </div>
+                    <br>
+                    <div>
+                        <input class="" type="mail" name="username" placeholder="Email" required>
+                    </div>
+                    <br>
+                    <div>
+                        <input class="" type="password" name="password" placeholder="Password" required>
+                    </div>
+                    <br>
+                    <div>
+                        <input class="" type="tel" name="phone" placeholder="Phone Number" required>
+                    </div>
+                    <br>
+                    <br>
+                    <br>
+                    <div class="" style="display:flex; justify-content:center">
+                        <button type="submit" class="error__link">
+                        Register Your Account
+                        </button>
+                    </div>
+                </form>
+                
+                <hr>
+                <br>
+                <br>
+                <p class="error__subtext">
+                    Already Have a Account - <a href="{% url "login" %}"> Login Here </a>
+                </p>
+            </div>
+        </div>
+    </section>
+
+
+    {% endblock body %}

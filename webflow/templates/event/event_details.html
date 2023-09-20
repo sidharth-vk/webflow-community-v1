@@ -1,0 +1,243 @@
+{% extends "base/base.html" %}
+ {% load static %}
+    {% block body %}
+
+{% for events_details in events_details %}
+    <div class="main__breadcrumbs breadcrumbs">
+        <div class="container">
+            <ul class="breadcrumbs__list">
+                <li class="breadcrumbs__list-item">
+                    <a class="breadcrumbs__list-link" href="#">
+                        Home
+                    </a>
+                </li>
+                <li class="breadcrumbs__list-item">
+                    <a class="breadcrumbs__list-link" href="#">
+                        Events
+                    </a>
+                </li>
+                <li class="breadcrumbs__list-item">
+                    <p class="breadcrumbs__list-text">
+                        Big Global E-Commerce Conference 2024
+                    </p>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="main__section-top section-top">
+        <div class="container">
+            <div class="section-top__inner" style="justify-content: space-between;">
+                <div class="section-top__content section-top-content">
+                    <p class="section-top-content__date">
+                        {{events_details.start_date_time.day}} {{events_details.start_date_time|date:"F"}} - {{events_details.end_date_time.day}} {{events_details.end_date_time|date:"F"}} {{events_details.end_date_time.year}}
+                    </p>
+                    <h1 class="section-top-content__title title">
+                        {{events_details.name}}
+                    </h1>
+                    <ul class="section-top-content__list card-list">
+                        <li class="card-list__item">
+                            <p class="card-list__text">
+                               {{events_details.location}}
+                            </p>
+                        </li>
+                        <li class="card-list__item">
+                            <p class="card-list__text">
+                                {{events_details.center}}
+                            </p>
+                        </li>
+                    </ul>
+                    <div class="section-top-content__buttons">
+                        <a class="section-top-content__buttons-link section-top-content__buttons-link--purple"
+                            href="{{events_details.calender}}">
+                            Add to Calendar
+                        </a>
+                        <a class="section-top-content__buttons-link" href="#" download>
+                           Rule Book
+                        </a>
+                    </div>
+                </div>
+                <div class="section-top__img">
+                    <img class="section-top__img-image" src="{{events_details.banner.url}}" alt="img">
+                </div>
+            </div>
+        </div>
+    </div>
+    <section class="main__event event">
+        <div class="container">
+            <div class="event__inner">
+                <section class="event__about about-event">
+                    <div class="about-event__box about-event-box">
+                        <h2 class="about-event-box__title">
+                            About the Event
+                        </h2>
+                        <style>
+                            .sample_p_tag p {
+                                    color: #fff;
+                                    font-family: Clash Grotesk;
+                                    font-style: normal;
+                                    font-weight: 500;
+                                    font-size: 16px;
+                                    line-height: 24px;
+                                }
+
+                            .sample_p_tag h1,h2,h3,h4,h5,h6 {
+                                color: #fff;
+                                font-size: 36px;
+                                line-height: 36px;
+                                font-weight: 500;
+                                }
+                        </style>
+                        <div class="sample_p_tag">
+                           {{events_details.about|safe}}
+                        </div>
+                        
+                        <div class="">
+                            <img class="" style="height: 100%; width: 100%; border-radius: 20px;" src="{{events_details.poster.url}}"
+                                alt="img">
+                        </div>
+
+                        <div class="sample_p_tag">
+                            {{events_details.about2|safe}}
+                         </div>
+                        
+                    </div>
+                    <div class="about-event__box about-event-box">
+                        <h2 class="about-event-box__title">
+                            Venue Map
+                        </h2>
+                        <div class="about-event-box__map">
+                            <iframe
+                                src="{{events_details.map}}"
+                                width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                                referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        </div>
+                    </div>
+                </section>
+                <aside class="event__aside event-aside">
+                    <p class="event-aside__price">
+                        {{events_details.entry}}
+                    </p>
+                    <div class="event-aside__box event-aside-box">
+                        <h4 class="event-aside-box__title">
+                            Details
+                        </h4>
+                        <ul class="event-aside-box__list">
+                            <li class="event-aside-box__list-item">
+                                <p class="event-aside-box__list-text">
+                                    Date
+                                    <span>
+                                        {{events_details.start_date_time.date}}
+                                    </span>
+                                </p>
+                            </li>
+                            <li class="event-aside-box__list-item">
+                                <p class="event-aside-box__list-text">
+                                    Time
+                                    <span>
+                                        {{events_details.start_date_time.time}}
+                                    </span>
+                                </p>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="event-aside__box event-aside-box">
+                        <h4 class="event-aside-box__title">
+                            Cordinator
+                        </h4>
+                        <ul class="event-aside-box__list">
+                            <li class="event-aside-box__list-item">
+                                <p class="event-aside-box__list-text">
+                                    Name
+                                    <span>
+                                        <a href="{% url "profile_page_output" events_details.organizer.slug %}">{{events_details.organizer.name}}</a>
+                                    </span>
+                                </p>
+                            </li>
+                            <li class="event-aside-box__list-item">
+                                <p class="event-aside-box__list-text">
+                                    Email
+                                    <a href="mailto:  {{events_details.organizer.email}}">
+                                        {{events_details.organizer.email}}
+                                    </a>
+                                </p>
+                            </li>
+                            <li class="event-aside-box__list-item">
+                                <p class="event-aside-box__list-text">
+                                    Phone
+                                    <a href="tel:{{events_details.organizer.phono}}">
+                                        {{events_details.organizer.phono}}
+                                    </a>
+                                </p>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                    <div class="event-aside__box event-aside-box">
+                        <h4 class="event-aside-box__title">
+                            Venue
+                        </h4>
+                        <ul class="event-aside-box__list">
+                            <li class="event-aside-box__list-item">
+                                <p class="event-aside-box__list-text">
+                                    Place
+                                    <span>
+                                        {{events_details.center}}
+                                    </span>
+                                </p>
+                            </li>
+                            <li class="event-aside-box__list-item">
+                                <p class="event-aside-box__list-text">
+                                    Location
+                                    <a href="{{events_details.map}}">
+                                        {{events_details.location}}
+                                    </a>
+                                </p>
+                            </li>
+                            <li class="event-aside-box__list-item">
+                                <p class="event-aside-box__list-text">
+                                    Phone
+                                    <a href="tel:{{events_details.organizer.phono}}">
+                                        {{events_details.organizer.phono}}
+                                    </a>
+                                </p>
+                            </li>
+                            <li class="event-aside-box__list-item">
+                                <p class="event-aside-box__list-text" style="text-align: center; color:red;">For team events, only the team leader should register, and the registration committee will collect details from the other team members. If you are registering for a solo event, please provide your name.
+                                </p>
+                            </li>
+                        </ul>
+                    </div>
+                    <a class="event-aside__link" href="#registration_popup" data-fancybox="">
+                        Register Now
+                    </a>
+                </aside>
+            </div>
+        </div>
+    </section>
+
+
+
+    <section class="main__popup " id="registration_popup">
+        <div class="popup__inner" style="text-align:center;">
+            <h2 class="popup__title">
+                Register
+            </h2>
+
+            <div class="popup-content">
+                <div id="send-feedback">
+                    <form method="post">
+                        {% csrf_token %}
+                        <input class="fl-input" type="text" name="team" placeholder="Team Name / Leader Name">
+                        <input class="input" type="text" name="collegename" placeholder="College Name">
+                        <input class="input" type="text" name="semester" placeholder="Semester">
+                        <button class="comment__form-btn" type="submit">
+                            Register Now
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endfor %}
+    {% endblock body %}
